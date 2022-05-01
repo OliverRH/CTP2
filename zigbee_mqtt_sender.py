@@ -12,9 +12,8 @@ def turn_on_off(zigbbe_addr, json_command):
     json_str = json.dumps(payload)
     client.publish("zigbee2mqtt/" + zigbbe_addr + "/set", json_str)
 
-
 client = mqtt.Client()
-client.connect = mqtt_connect("192.168.0.96", "1883")
+client.connect = mqtt_connect("192.168.0.96", 1883)
 
 client.on_message = turn_on_off("0x842e14fffe9e2d85", "ON")
 
