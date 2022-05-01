@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 import json
 
-
+#test
 def mqtt_subscriber(zigbbe_addr_subscriber):
     client.subscribe("zigbee2mqtt/" + zigbbe_addr_subscriber)
 
