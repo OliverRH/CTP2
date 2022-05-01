@@ -25,11 +25,20 @@ def get_lux_from_sensor(client, userdata, msg):
 	if int(lux) < 430: turn_on_off("0x842e14fffe9e2d85", "OFF")
 	elif int(lux) > 430: turn_on_off("0x842e14fffe9e2d85", "ON")
 
-client = mqtt.Client()
-client.connect = mqtt_connect("192.168.0.96", 1883)
+def sensor_movement(client, userdata, msg): 
+	tmp = msg.payload.decode("utf-8")
+	
+	tmp_split = tmp.split(",")
+	print(tmp_split)
+	print(tmp_split[1])
+	
+	tmp2xsplit = tmp_split[1].split(":")
+	print(tmp2xsplit)
+	lux = tmp2xsplit[1]
+	return lux
 
-client.on_message = get_lux_from_sensor()
-
-client.subscribe = mqtt_subscriber("0x00158d0005729f18")
-
-client.loop_forever()
+def run_all():
+    client = mqtt.Client()
+    client.connect = mqtt_connect("192.168.0.96", 1883)
+    client.on_message = get_lux_from_sensor
+    client.subscribe = mqtt_subscriber("0x00158d0005729f18")
