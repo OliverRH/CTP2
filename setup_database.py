@@ -77,5 +77,13 @@ def insert_sql(ip_host, db_user, db_pass, db_name, table_name, table_columns_nam
     print(mycursor.rowcount, "record inserted.")
 
 
+def insert_timestamp():
+    now = datetime.now() # current date and time
+    date_time = now.strftime("%Y-%m-%d %H:%M:%S")    
+
+    CTP2_db_table_columns_values = ["Time"]
+    column_values = "'" + CTP2_db_table_columns_values[0] + "'" + ", " + "'" + date_time + "'"
+
+    insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_name, column_names, column_values)
 
     
