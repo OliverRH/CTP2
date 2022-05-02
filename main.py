@@ -6,23 +6,41 @@ from datetime import datetime
 from setup_database import *
 import time
 import paho.mqtt.client as mqtt
+import configparser
 
-client = mqtt.Client() 
-client.connect("localhost", 1883) #Client IP address and port
+#Read from config_zigbee.ini file
+#----------------------------------------------------------------
+config = configparser.ConfigParser()
+config.read('config_zigbee.ini')
+Pi_ip_address = config['zigbee2mqtt']['pi_ip_address']
+Pi_ip_port = int(config['zigbee2mqtt']['pi_ip_port'])
+#----------------------------------------------------------------
+
+#Connect to mqtt
+#----------------------------------------------------------------
+mqtt_connect(Pi_ip_address, Pi_ip_port)#Client IP address and port
 client.subscribe("testtopic") #Publisher name topic
 client.loop_start() #Starts listening
-    
+#----------------------------------------------------------------
+
+#Function that converts string to boolean
+#----------------------------------------------------------------
 def str2bool(v): #Converts string to boolean
   return str(v).lower() in ("true", "1") #Returns true if string is true or 1  
+#----------------------------------------------------------------
 
+#Function that gets bool from subscriber mqtt
+#----------------------------------------------------------------
 movement = False #Definds movement boolean to false
 def on_message(client, userdata, msg):
     msg.payload = msg.payload.decode("utf-8") #Converts message from MQTT publisher to utf-8 string
     global movement #Global movement variable
     movement = str2bool(msg.payload) #Converts payload string from MQTT publisher to movement boolean
     print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
+#----------------------------------------------------------------
 
-
+#Main forever loop
+#----------------------------------------------------------------
 while True: #While loops runs forever
     now = datetime.now() #Current date and time
     if 0 <= now.hour < 9 or 14 <= now.hour <= 23: #The system must be active between 22:00 and 9:00. (From 0:00 to 8:59 and 22:00 to 23:59) The system must automatically turn on/off when necessary
@@ -35,3 +53,4 @@ while True: #While loops runs forever
             insert_timestamp()
             #insert_sql() #Function from sql_connector.py. Inserts the date and time into the database and prints the date and time
             movement = False #Resets movement boolean to false after inserting SQL
+#----------------------------------------------------------------
