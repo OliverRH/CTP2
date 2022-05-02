@@ -5,9 +5,10 @@ import sys
 #----------------------------------------------------------------
 config = configparser.ConfigParser()
     
-def create_config_file(Pi_ip_address, zigbee_subscriber_address, zigbee_publisher_address):
+def create_config_file(Pi_ip_address, Pi_ip_port, zigbee_subscriber_address, zigbee_publisher_address):
 
     config['zigbee2mqtt'] = {'Pi_ip_address': Pi_ip_address,
+                             'Pi_ip_port': Pi_ip_port,
                              'zigbee_subscriber_address': zigbee_subscriber_address,
                              'zigbee_publisher_address': zigbee_publisher_address}
     
@@ -22,7 +23,8 @@ print("\nName of the zigbee publisher address:", sys.argv[3])
 print("----------------------------------------------------------------\n")
 
 Pi_ip_address = sys.argv[1]
-zigbee_subscriber_address = sys.argv[2]
-zigbee_publisher_address = sys.argv[3]
+Pi_ip_port = sys.argv[2]
+zigbee_subscriber_address = sys.argv[3]
+zigbee_publisher_address = sys.argv[4]
 
-create_config_file(Pi_ip_address, zigbee_subscriber_address, zigbee_publisher_address)
+create_config_file(Pi_ip_address, Pi_ip_port, zigbee_subscriber_address, zigbee_publisher_address)

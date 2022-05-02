@@ -87,7 +87,7 @@ def insert_timestamp():
     CTP2_db_table_columns_values = ["Time"]
     column_values = "'" + CTP2_db_table_columns_values[0] + "'" + ", " + "'" + date_time + "'"
 
-    config.read('config.ini')
+    config.read('config_db.ini')
     print(config['mySQL_login']['db_user'])
 
     ip_host = config['mySQL_login']['ip_host']
