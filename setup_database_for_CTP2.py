@@ -45,8 +45,8 @@ CTP2_db_table_columns_names = ["Pi_data", "Pi_time"]
 CTP2_db_table_columns_create =   "(" + CTP2_db_table_columns_names[0] + " VARCHAR(100), " + CTP2_db_table_columns_names[1] + " DATETIME)"       
 column_names = CTP2_db_table_columns_names[0] + ", " + CTP2_db_table_columns_names[1]
 
-#create_database(ip_host, db_user, db_pass, CTP2_db_name)
-#time.sleep(1)
-#create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_name, CTP2_db_table_columns_create)
-#time.sleep(1)
+create_database(ip_host, db_user, db_pass, CTP2_db_name)
+time.sleep(1)
+create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_name, CTP2_db_table_columns_create)
+time.sleep(1)
 create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_name, CTP2_db_table_columns_names)
