@@ -1,6 +1,26 @@
 from setup_database import *
 import sys
 import time
+import configparser
+
+#Creates config.ini file that contains credentials for database login and information about the database 
+#----------------------------------------------------------------
+config = configparser.ConfigParser()
+    
+def create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_name, CTP2_db_table_columns_names):
+
+    config['mySQL_login'] = {'ip_host': ip_host,
+                             'db_user': db_user,
+                             'db_pass': db_pass}
+    
+    config['mySQL_db'] = {'CTP2_db_name': CTP2_db_name,
+                          'CTP2_db_table_name': CTP2_db_table_name,
+                          'CTP2_db_table_columns_names': ', '.join(CTP2_db_table_columns_names)}
+    
+    with open('config.ini', 'w') as configfile:
+        config.write(configfile)
+#----------------------------------------------------------------
+
 
 #Automatic creation of SQL database for CTP2 projct
 
@@ -28,3 +48,5 @@ column_names = CTP2_db_table_columns_names[0] + ", " + CTP2_db_table_columns_nam
 create_database(ip_host, db_user, db_pass, CTP2_db_name)
 time.sleep(1)
 create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_name, CTP2_db_table_columns_create)
+time.sleep(1)
+create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_name, CTP2_db_table_columns_names)

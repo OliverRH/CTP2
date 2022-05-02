@@ -1,6 +1,8 @@
 import paho.mqtt.client as mqtt
 import json
 
+client = mqtt.Client()
+
 def mqtt_subscriber(zigbbe_addr_subscriber):
     client.subscribe("zigbee2mqtt/" + zigbbe_addr_subscriber)
 
@@ -38,7 +40,6 @@ def sensor_movement(client, userdata, msg):
 	return lux
 
 def run_all():
-    client = mqtt.Client()
     client.connect = mqtt_connect("192.168.0.96", 1883)
     client.on_message = get_lux_from_sensor
     client.subscribe = mqtt_subscriber("0x00158d0005729f18")
