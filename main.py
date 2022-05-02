@@ -12,7 +12,7 @@ client.subscribe("testtopic") #Publisher name topic
 client.loop_start() #Starts listening
     
 def str2bool(v): #Converts string to boolean
-  return str(v).lower() in ("true", "1")    
+  return str(v).lower() in ("true", "1") #Returns true if string is true or 1  
 
 movement = False #Definds movement boolean to false
 def on_message(client, userdata, msg):
