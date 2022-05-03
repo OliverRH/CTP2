@@ -38,26 +38,32 @@ db_pass = sys.argv[3]
 #----------------------------------------------------------------
 CTP2_db_name = "HAJTEK_Smart_Home_Care"
 CTP2_db_table_room = "db_table_room"
-CTP2_db_table_login = "db_table_room"
-CTP2_db_table_columns_names = ["Pi_room", "Pi_time"]
+CTP2_db_table_login = "db_table_login"
+CTP2_db_table_room_columns_names = ["Pi_room", "Pi_time"]
 #----------------------------------------------------------------
 
-CTP2_db_table_columns_create =   "(" + CTP2_db_table_columns_names[0] + " VARCHAR(100), " + CTP2_db_table_columns_names[1] + " DATETIME)"       
-column_names = CTP2_db_table_columns_names[0] + ", " + CTP2_db_table_columns_names[1]
+CTP2_db_table_room_columns_create =   "(" + CTP2_db_table_room_columns_names[0] + " VARCHAR(100), " + CTP2_db_table_room_columns_names[1] + " DATETIME)"       
+column_names_room = CTP2_db_table_room_columns_names[0] + ", " + CTP2_db_table_room_columns_names[1]
 
 create_database(ip_host, db_user, db_pass, CTP2_db_name)
 time.sleep(1)
-create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_columns_create)
+create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_room_columns_create)
 time.sleep(1)
-create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_columns_names)
+create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_room_columns_names)
 
 
-userlogin = input("Enter your username")
-userpass = input("Enter your password")
+userlogin = input("Enter your username: ")
+userpass = input("Enter your password: ")
 
-CTP2_db_table_columns_login = [userlogin, userpass]
+CTP2_db_table_login_columns_names = [userlogin, userpass]
 
-create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_columns_create)
+CTP2_db_table_login_columns_create =   "(" + CTP2_db_table_login_columns_names[0] + " VARCHAR(100), " + CTP2_db_table_room_columns_names[1] + " VARCHAR(100))"       
+column_names_login = CTP2_db_table_login_columns_names[0] + ", " + CTP2_db_table_login_columns_names[1]
+
+
+
+
+create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_create)
 time.sleep(1)
-create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_columns_names)
+create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names)
 
