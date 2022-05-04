@@ -46,6 +46,8 @@ def on_message(client, userdata, msg):
     movement = str2bool(msg.payload) #Converts payload string from MQTT publisher to movement boolean
     print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
     
+    tmp = tmp.split(",")
+    
     print("tmp: " + tmp)
     
     #tmp_split = tmp.split(",")
