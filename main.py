@@ -40,18 +40,18 @@ def str2bool(v): #Converts string to boolean
 #----------------------------------------------------------------
 movement = False #Definds movement boolean to false
 def on_message(client, userdata, msg):
+    global movement #Global movement variable
     msg.payload = msg.payload.decode("utf-8") #Converts message from MQTT publisher to utf-8 string
     tmp = msg.payload
-    global movement #Global movement variable
-    movement = str2bool(msg.payload) #Converts payload string from MQTT publisher to movement boolean
-    #print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
-
     tmp = tmp.split(",")
     tmp = tmp[1].split(":")
     lux = tmp[1]
     print("Lux: " + lux)
-    state_on_off = lux_threshold_bool(lux, 430)
-    turn_on_off(LED_zigbee_addr, state_on_off)    
+    movement = lux_threshold_bool(lux, 430)
+    turn_on_off(LED_zigbee_addr, movement)    
+    #movement = str2bool(msg.payload) #Converts payload string from MQTT publisher to movement boolean
+    #print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
+
 #----------------------------------------------------------------
 
 #Main forever loop
