@@ -18,14 +18,15 @@ LED_zigbee_addr = config['zigbee2mqtt']['zigbee_subscriber_address']
 Sensor_zigbee_addr = config['zigbee2mqtt']['zigbee_publisher_address']
 #----------------------------------------------------------------
 
-print("Pi IP: " + Pi_ip_address + "Pi port: " + str(Pi_ip_port))
+print("Pi IP: " + Pi_ip_address)
+print("Pi IP Port: " + str(Pi_ip_port))
 
 #Connect to mqtt
 #----------------------------------------------------------------
-#mqtt_connect(Pi_ip_address, Pi_ip_port)#Client IP address and port
-#mqtt_subscriber(LED_zigbee_addr) 
+mqtt_connect(Pi_ip_address, Pi_ip_port)#Client IP address and port
+mqtt_subscriber(LED_zigbee_addr) 
 #client.subscribe("testtopic") #Publisher name topic
-#client.loop_start() #Starts listening
+client.loop_start() #Starts listening
 #----------------------------------------------------------------
 
 #Function that converts string to boolean
