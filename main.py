@@ -43,13 +43,14 @@ def on_message(client, userdata, msg):
     global movement #Global movement variable
     movement = str2bool(msg.payload) #Converts payload string from MQTT publisher to movement boolean
     print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
+    print(sensor_movement)
 #----------------------------------------------------------------
 
 
-print(sensor_movement)
 
 
-"""
+
+
 #Main forever loop
 #----------------------------------------------------------------
 while True: #While loops runs forever
@@ -61,8 +62,7 @@ while True: #While loops runs forever
         print("Any movement at " + now.strftime("%Y-%m-%d %H:%M:%S") + " " + str(movement)) #prints the current date and time, but commented our due to high system usage.
         if movement == True: #If movement is True, then insert date and time into the database.
             print("Insert SQL") #Placeholder for insert_sql command
-            insert_timestamp()
+            #insert_timestamp()
             #insert_sql() #Function from sql_connector.py. Inserts the date and time into the database and prints the date and time
             movement = False #Resets movement boolean to false after inserting SQL
 #----------------------------------------------------------------
-"""
