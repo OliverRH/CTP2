@@ -49,7 +49,7 @@ def on_message(client, userdata, msg):
     tmp = tmp.split(",")
     
     print("tmp: ")
-    print(tmp)
+    print(tmp[1])
     
     #tmp_split = tmp.split(",")
 	#print(tmp_split)
