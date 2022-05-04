@@ -60,9 +60,22 @@ create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, 
 userlogin = input("Please pick username for the login on HAJTEK Smart Home Care website: ")
 userpass = input("Please pick password for the login on HAJTEK Smart Home Care website: ")
 
+print("Press 1 for admin")
+print("Press 2 for standard user")
+
+usertype_input = input("")
+
+if usertype_input == 1:
+    usertype = "admin"
+elif usertype_input == 2:
+    usertype = "user"
+else:
+    print("Error! Please try again")
+    exit
+
 print("\n----------------------------------------------------------------")
-print("Username:", ip_host)
-print("\nPassword:", db_user)
+print("Username:", userlogin)
+print("\nPassword:", userpass)
 print("----------------------------------------------------------------\n")
 
 CTP2_db_table_login_columns_names = ["id", "username", "password", "usertype"]
@@ -73,4 +86,8 @@ CTP2_db_table_login_columns_create = "(" + CTP2_db_table_login_columns_names[0] 
 create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_create)
 time.sleep(1)
 create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names)
+time.sleep(1)
+CTP2_db_table_login_columns_names = userlogin + ", " + userpass + ", " + usertype
 
+insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names, CTP2_db_table_login_columns_values)
+insert_sql(ip_host, db_user, db_pass, db_name, table_name, table_columns_names, table_columns_values)
