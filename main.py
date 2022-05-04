@@ -48,7 +48,8 @@ def on_message(client, userdata, msg):
     
     tmp = tmp.split(",")
     
-    print("tmp: " + tmp)
+    print("tmp: ")
+    print(tmp)
     
     #tmp_split = tmp.split(",")
 	#print(tmp_split)
