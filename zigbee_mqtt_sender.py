@@ -5,12 +5,16 @@ client = mqtt.Client()
 
 def mqtt_subscriber(zigbbe_addr_subscriber):
     client.subscribe("zigbee2mqtt/" + zigbbe_addr_subscriber)
+    print("Subscribing to: " + zigbbe_addr_subscriber)
 
 def mqtt_publisher(zigbbe_addr_publisher, json_str):
-    client.publish("zigbee2mqtt/" + zigbbe_addr + "/set", json_str)
+    client.publish("zigbee2mqtt/" + zigbbe_addr_publisher + "/set", json_str)
 
 def mqtt_connect(ip_addr, port):
     client.connect(ip_addr, port)
+    print("Connected to: \n")
+    print("Ip_address: " + ip_addr)
+    print("Port: " + str(port))
       
 def turn_on_off(zigbbe_addr, bool_data):
     if bool_data == True: 
@@ -19,7 +23,8 @@ def turn_on_off(zigbbe_addr, bool_data):
         payload = {"state":"OFF"}
         
     json_str = json.dumps(payload)
-    client.publish("zigbee2mqtt/" + zigbbe_addr + "/set", json_str)
+    mqtt_publisher(zigbbe_addr, json_str)
+    #client.publish("zigbee2mqtt/" + zigbbe_addr + "/set", json_str)
     
 def lux_threshold_bool(lux, threshold):
     if int(lux) > threshold: 
