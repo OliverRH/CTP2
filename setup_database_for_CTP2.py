@@ -68,6 +68,8 @@ else:
 print("\n----------------------------------------------------------------")
 print("Username:", userlogin)
 print("\nPassword:", userpass)
+print("\nUsertype:", usertype)
+
 print("----------------------------------------------------------------\n")
 
 CTP2_db_table_login_columns_names = ["id", "username", "password", "usertype"]
@@ -88,4 +90,6 @@ create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login,
 time.sleep(1)
 CTP2_db_table_login_columns_values = userlogin + ", " + userpass + ", " + usertype
 
-insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names, CTP2_db_table_login_columns_values)
+print(CTP2_db_table_login_columns_values)
+
+#insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names, CTP2_db_table_login_columns_values)
