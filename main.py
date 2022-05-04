@@ -43,7 +43,7 @@ def on_message(client, userdata, msg):
     global movement #Global movement variable
     movement = str2bool(msg.payload) #Converts payload string from MQTT publisher to movement boolean
     print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
-    print(sensor_movement)
+    print(sensor_movement())
 #----------------------------------------------------------------
 
 
