@@ -95,9 +95,9 @@ def insert_timestamp():
     db_pass = config['mySQL_login']['db_pass']
     
     CTP2_db_name = config['mySQL_db']['ctp2_db_name']
-    CTP2_db_table_name = config['mySQL_db']['ctp2_db_table_name']
+    CTP2_db_table_name = config['mySQL_db']['ctp2_db_table_room']
     
-    column_names = config['mySQL_db']['ctp2_db_table_columns_names']
+    column_names = config['mySQL_db']['ctp2_db_table__room_columns_names']
 
     insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_name, column_names, column_values)
 

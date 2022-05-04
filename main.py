@@ -14,12 +14,15 @@ config = configparser.ConfigParser()
 config.read('config_zigbee.ini')
 Pi_ip_address = config['zigbee2mqtt']['pi_ip_address']
 Pi_ip_port = int(config['zigbee2mqtt']['pi_ip_port'])
+LED_zigbee_addr = config['zigbee2mqtt']['zigbee_subscriber_address']
+Sensor_zigbee_addr = config['zigbee2mqtt']['zigbee_publisher_address']
 #----------------------------------------------------------------
 
 #Connect to mqtt
 #----------------------------------------------------------------
 mqtt_connect(Pi_ip_address, Pi_ip_port)#Client IP address and port
-client.subscribe("testtopic") #Publisher name topic
+mqtt_subscriber(LED_zigbee_addr) 
+#client.subscribe("testtopic") #Publisher name topic
 client.loop_start() #Starts listening
 #----------------------------------------------------------------
 
@@ -38,6 +41,9 @@ def on_message(client, userdata, msg):
     movement = str2bool(msg.payload) #Converts payload string from MQTT publisher to movement boolean
     print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
 #----------------------------------------------------------------
+
+print(sensor_movement)
+
 
 #Main forever loop
 #----------------------------------------------------------------
