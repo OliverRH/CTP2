@@ -18,6 +18,8 @@ LED_zigbee_addr = config['zigbee2mqtt']['zigbee_subscriber_address']
 Sensor_zigbee_addr = config['zigbee2mqtt']['zigbee_publisher_address']
 #----------------------------------------------------------------
 
+print("Pi IP: " + Pi_ip_address + "Pi port: " + Pi_ip_port)
+
 #Connect to mqtt
 #----------------------------------------------------------------
 mqtt_connect(Pi_ip_address, Pi_ip_port)#Client IP address and port
@@ -42,7 +44,7 @@ def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
 #----------------------------------------------------------------
 
-print("Pi IP: " + Pi_ip_address + "Pi port: " + Pi_ip_port)
+
 print(sensor_movement)
 
 
