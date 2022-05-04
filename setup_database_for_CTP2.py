@@ -56,7 +56,7 @@ userpass = input("Please pick password for the login on HAJTEK Smart Home Care w
 print("Press 1 for admin")
 print("Press 2 for standard user")
 
-usertype_input = input("")
+usertype_input = int(input(""))
 
 if usertype_input == 1:
     usertype = "admin"
