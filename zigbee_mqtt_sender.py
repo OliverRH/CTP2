@@ -21,6 +21,12 @@ def turn_on_off(zigbbe_addr, bool_data):
     json_str = json.dumps(payload)
     client.publish("zigbee2mqtt/" + zigbbe_addr + "/set", json_str)
     
+def lux_threshold_bool(lux, threshold):
+    if int(lux) > threshold: 
+        return True
+    elif int(lux) < threshold:
+        return False
+    
 def get_lux_from_sensor(client, userdata, msg):
 	tmp = msg.payload.decode("utf-8")
 	

@@ -44,24 +44,15 @@ def on_message(client, userdata, msg):
     tmp = msg.payload
     global movement #Global movement variable
     movement = str2bool(msg.payload) #Converts payload string from MQTT publisher to movement boolean
-    print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
+    #print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
 
     tmp = tmp.split(",")
     tmp = tmp[1].split(":")
     lux = tmp[1]
     print("Lux: " + lux)
     state_on_off = lux_threshold_bool(lux, 430)
-    turn_on_off(LED_zigbee_addr, state_on_off)
-    
+    turn_on_off(LED_zigbee_addr, state_on_off)    
 #----------------------------------------------------------------
-
-
-def lux_threshold_bool(lux, threshold):
-    if int(lux) > threshold: 
-        return True
-    elif int(lux) < threshold:
-        return False
-    
 
 #Main forever loop
 #----------------------------------------------------------------
