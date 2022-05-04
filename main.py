@@ -1,5 +1,6 @@
 from cProfile import run
 from pydoc import cli
+from traceback import print_tb
 from sql_connector import *
 from zigbee_mqtt_sender import *
 from datetime import datetime
@@ -40,10 +41,21 @@ def str2bool(v): #Converts string to boolean
 movement = False #Definds movement boolean to false
 def on_message(client, userdata, msg):
     msg.payload = msg.payload.decode("utf-8") #Converts message from MQTT publisher to utf-8 string
+    tmp = msg.payload
     global movement #Global movement variable
     movement = str2bool(msg.payload) #Converts payload string from MQTT publisher to movement boolean
     print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
-    print(sensor_movement())
+    
+    print("tmp: " + tmp)
+    
+    #tmp_split = tmp.split(",")
+	#print(tmp_split)
+	#print(tmp_split[1])
+	
+	#tmp2xsplit = tmp_split[1].split(":")
+	#print(tmp2xsplit)
+	#lux = tmp2xsplit[1]
+    
 #----------------------------------------------------------------
 
 
