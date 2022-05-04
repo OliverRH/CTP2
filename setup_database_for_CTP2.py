@@ -59,15 +59,17 @@ create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, 
 userlogin = input("Please pick username for the login on HAJTEK Smart Home Care website: ")
 userpass = input("Please pick password for the login on HAJTEK Smart Home Care website: ")
 
+print("\n----------------------------------------------------------------")
+print("Username:", ip_host)
+print("\nPassword:", db_user)
+print("----------------------------------------------------------------\n")
+
 CTP2_db_table_login_columns_names = ["id", "username", "password", "usertype"]
 
 CTP2_db_table_login_columns_create =   "(" + CTP2_db_table_login_columns_names[0] + " VARCHAR(100), " + CTP2_db_table_room_columns_names[1] + " VARCHAR(100))"       
 column_names_login = CTP2_db_table_login_columns_names[0] + ", " + CTP2_db_table_login_columns_names[1]
 
-
-
-
-#create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_create)
-#time.sleep(1)
-#create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names)
+create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_create)
+time.sleep(1)
+create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names)
 
