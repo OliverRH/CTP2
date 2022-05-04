@@ -6,10 +6,18 @@ client = mqtt.Client()
 def mqtt_subscriber(zigbbe_addr_subscriber):
     client.subscribe("zigbee2mqtt/" + zigbbe_addr_subscriber)
 
+def mqtt_publisher(zigbbe_addr_publisher, json_str):
+    client.publish("zigbee2mqtt/" + zigbbe_addr + "/set", json_str)
+
 def mqtt_connect(ip_addr, port):
     client.connect(ip_addr, port)
       
-def turn_on_off(zigbbe_addr, json_command):
+def turn_on_off(zigbbe_addr, bool_data):
+    if bool_data == True: 
+        payload = {"state":"ON"}
+    elif bool_data == False:
+        payload = {"state":"OFF"}
+        
     payload = {"state":json_command}
     json_str = json.dumps(payload)
     client.publish("zigbee2mqtt/" + zigbbe_addr + "/set", json_str)

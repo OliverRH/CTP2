@@ -15,8 +15,8 @@ config = configparser.ConfigParser()
 config.read('config_zigbee.ini')
 Pi_ip_address = config['zigbee2mqtt']['pi_ip_address']
 Pi_ip_port = int(config['zigbee2mqtt']['pi_ip_port'])
-LED_zigbee_addr = config['zigbee2mqtt']['zigbee_subscriber_address']
-Sensor_zigbee_addr = config['zigbee2mqtt']['zigbee_publisher_address']
+LED_zigbee_addr = config['zigbee2mqtt']['zigbee_publisher_address']
+Sensor_zigbee_addr = config['zigbee2mqtt']['zigbee_subscriber_address']
 #----------------------------------------------------------------
 
 print("Pi IP: " + Pi_ip_address)
@@ -25,7 +25,7 @@ print("Pi IP Port: " + str(Pi_ip_port))
 #Connect to mqtt
 #----------------------------------------------------------------
 mqtt_connect(Pi_ip_address, Pi_ip_port)#Client IP address and port
-mqtt_subscriber(LED_zigbee_addr) 
+mqtt_subscriber(Sensor_zigbee_addr) 
 #client.subscribe("testtopic") #Publisher name topic
 client.loop_start() #Starts listening
 #----------------------------------------------------------------
@@ -50,13 +50,18 @@ def on_message(client, userdata, msg):
     tmp = tmp[1].split(":")
     lux = tmp[1]
     print("Lux: " + lux)
+    state_on_off = lux_threshold_bool(lux, 430)
+    turn_on_off(LED_zigbee_addr, state_on_off)
     
 #----------------------------------------------------------------
 
 
-
-
-
+def lux_threshold_bool(lux, threshold):
+    if int(lux) > threshold: 
+        return True
+    elif int(lux) < threshold:
+        return False
+    
 
 #Main forever loop
 #----------------------------------------------------------------
