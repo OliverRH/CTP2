@@ -70,8 +70,7 @@ if usertype_input == 1:
 elif usertype_input == 2:
     usertype = "user"
 else:
-    print("Error! Please try again")
-    exit
+    sys.exit("Error! Please try again")
 
 print("\n----------------------------------------------------------------")
 print("Username:", userlogin)
