@@ -24,15 +24,19 @@ def create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_na
 
 #Automatic creation of SQL database for CTP2 projct
 
+ip_host = input("IP address of database server: ")
+db_user = input("Enter the username of the database server: ")
+db_pass = input("Enter the password of the database server: ")
+
 print("\n----------------------------------------------------------------")
-print("IP address of host:", sys.argv[1])
-print("\nName of database user:", sys.argv[2])
-print("\nThe password of database user:", sys.argv[3])
+print("IP address of host:", ip_host)
+print("\nName of database user:", db_user)
+print("\nThe password of database user:", db_pass)
 print("----------------------------------------------------------------\n")
 
-ip_host = sys.argv[1]
-db_user = sys.argv[2]
-db_pass = sys.argv[3]
+#ip_host = sys.argv[1]
+#db_user = sys.argv[2]
+#db_pass = sys.argv[3]
 
 #Variables for database:
 #----------------------------------------------------------------
@@ -52,13 +56,13 @@ time.sleep(1)
 create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_room_columns_names)
 
 
-#userlogin = input("Enter your username: ")
-#userpass = input("Enter your password: ")
+userlogin = input("Please pick username for the login on HAJTEK Smart Home Care website: ")
+userpass = input("Please pick password for the login on HAJTEK Smart Home Care website: ")
 
-#CTP2_db_table_login_columns_names = ["id", "username", "password", "usertype"]
+CTP2_db_table_login_columns_names = ["id", "username", "password", "usertype"]
 
-#CTP2_db_table_login_columns_create =   "(" + CTP2_db_table_login_columns_names[0] + " VARCHAR(100), " + CTP2_db_table_room_columns_names[1] + " VARCHAR(100))"       
-#column_names_login = CTP2_db_table_login_columns_names[0] + ", " + CTP2_db_table_login_columns_names[1]
+CTP2_db_table_login_columns_create =   "(" + CTP2_db_table_login_columns_names[0] + " VARCHAR(100), " + CTP2_db_table_room_columns_names[1] + " VARCHAR(100))"       
+column_names_login = CTP2_db_table_login_columns_names[0] + ", " + CTP2_db_table_login_columns_names[1]
 
 
 
