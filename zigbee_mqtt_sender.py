@@ -18,7 +18,6 @@ def turn_on_off(zigbbe_addr, bool_data):
     elif bool_data == False:
         payload = {"state":"OFF"}
         
-    payload = {"state":json_command}
     json_str = json.dumps(payload)
     client.publish("zigbee2mqtt/" + zigbbe_addr + "/set", json_str)
     
