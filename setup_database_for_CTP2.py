@@ -88,8 +88,8 @@ create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_
 time.sleep(1)
 create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names)
 time.sleep(1)
-CTP2_db_table_login_columns_values = userlogin + ", " + userpass + ", " + usertype
+CTP2_db_table_login_columns_values =  "NULL" + ", " + userlogin + ", " + userpass + ", " + usertype
 
 print(CTP2_db_table_login_columns_values)
 
-#insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names, CTP2_db_table_login_columns_values)
+insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names, CTP2_db_table_login_columns_values)
