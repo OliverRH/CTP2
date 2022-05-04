@@ -47,17 +47,9 @@ def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
     
     tmp = tmp.split(",")
-    
-    print("tmp: ")
-    print(tmp[1])
-    
-    #tmp_split = tmp.split(",")
-	#print(tmp_split)
-	#print(tmp_split[1])
-	
-	#tmp2xsplit = tmp_split[1].split(":")
-	#print(tmp2xsplit)
-	#lux = tmp2xsplit[1]
+	tmp = tmp[1].split(":")
+	lux = tmp[1]
+    print("Lux: " + lux)
     
 #----------------------------------------------------------------
 
