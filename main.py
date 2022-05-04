@@ -42,9 +42,11 @@ def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
 #----------------------------------------------------------------
 
+print("Pi IP: " + Pi_ip_address + "Pi port: " + Pi_ip_port)
 print(sensor_movement)
 
 
+"""
 #Main forever loop
 #----------------------------------------------------------------
 while True: #While loops runs forever
@@ -60,3 +62,4 @@ while True: #While loops runs forever
             #insert_sql() #Function from sql_connector.py. Inserts the date and time into the database and prints the date and time
             movement = False #Resets movement boolean to false after inserting SQL
 #----------------------------------------------------------------
+"""
