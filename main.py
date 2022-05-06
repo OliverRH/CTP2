@@ -64,6 +64,6 @@ while True: #While loops runs forever
         if movement == True: #If movement is True, then insert date and time into the database.
             print("Insert SQL") #Placeholder for insert_sql command
             insert_timestamp()
-            insert_sql() #Function from sql_connector.py. Inserts the date and time into the database and prints the date and time
+            #insert_sql() #Function from sql_connector.py. Inserts the date and time into the database and prints the date and time
             movement = False #Resets movement boolean to false after inserting SQL
 #----------------------------------------------------------------
