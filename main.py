@@ -46,7 +46,7 @@ def on_message(client, userdata, msg):
     tmp = msg.payload
     tmp = tmp.split("}")
     print(tmp)
-    tmp = tmp[1].split(",")
+    tmp = tmp[0].split(",")
     
     tmp = tmp[4].split(":")
     occupancy = tmp[1]
