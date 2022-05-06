@@ -1,3 +1,4 @@
+from unittest import case
 import paho.mqtt.client as mqtt
 import json
 
@@ -25,6 +26,23 @@ def turn_on_off(zigbbe_addr, bool_data):
     json_str = json.dumps(payload)
     mqtt_publisher(zigbbe_addr, json_str)
     #client.publish("zigbee2mqtt/" + zigbbe_addr + "/set", json_str)
+    
+def room_to_color_LED(zigbbe_addr, room):
+    if room == 1:
+        payload = {"color":{"r":255,"g":0,"b":0}}  #red
+    elif room == 2:
+        payload = {"color":{"r":0,"g":255,"b":0}} #green
+    elif room == 3:
+        payload = {"color":{"r":0,"g":0,"b":255}} #blue
+    elif room == 4:
+        payload = {"color":{"r":255,"g":255,"b":0}} #
+    elif room == 5:
+        payload = {"color":{"r":255,"g":0,"b":255}} #megenta
+    else:
+        print("Invalid room number: " + room)
+    
+    json_str = json.dumps(payload)
+    mqtt_publisher(zigbbe_addr, json_str)
     
 def lux_threshold_bool(lux, threshold):
     if int(lux) > threshold: 
