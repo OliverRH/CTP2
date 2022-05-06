@@ -8,6 +8,9 @@ from setup_database import *
 import time
 import paho.mqtt.client as mqtt
 import configparser
+import sys
+
+room = sys.argv[1]
 
 #Read from config_zigbee.ini file
 #----------------------------------------------------------------
@@ -63,7 +66,6 @@ while True: #While loops runs forever
         print("Any movement at " + now.strftime("%Y-%m-%d %H:%M:%S") + " " + str(movement)) #prints the current date and time, but commented our due to high system usage.
         if movement == True: #If movement is True, then insert date and time into the database.
             print("Insert SQL") #Placeholder for insert_sql command
-            room = 1
             insert_timestamp(str(room))
             room_to_color_LED(LED_zigbee_addr, room)
             #insert_sql() #Function from sql_connector.py. Inserts the date and time into the database and prints the date and time
