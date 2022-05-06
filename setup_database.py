@@ -84,7 +84,7 @@ def insert_timestamp(room_number):
     now = datetime.now() # current date and time
     date_time = now.strftime("%Y-%m-%d %H:%M:%S")  
     
-    column_values = "'" + room_number + "'" + ", " + "'" + date_time + "'"
+    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + date_time + "'"
 
     config.read('config_db.ini')
     print(config['mySQL_login']['db_user'])
