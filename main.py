@@ -11,7 +11,7 @@ import configparser
 import sys
 
 
-room = 1
+room = "1"
 
 #Read from config_zigbee.ini file
 #----------------------------------------------------------------
