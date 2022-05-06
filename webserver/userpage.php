@@ -189,7 +189,7 @@ mysqli_close($conn);
 	
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="get_data_JS.js"></script>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="userpage_CSS.css">
     <title>LIVE - Dashboard</title>
 </head>
   
@@ -198,18 +198,29 @@ mysqli_close($conn);
 
 
 <div>
-<div id="chartContainer"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<div id="chartContainer"></div>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
-<div id="div_live_data">
-	<div id="live_data"></div>
+	<div id="div_live_data">
+		<div id="live_data"></div>
+	</div>
+
+	<div class="btn-group">
+		
+		<a href="logout.php" class="btn-group_button">Log ud!</a>
+		
+		<form action="delete_data.php" method="post">
+    		<input class="btn-group_button" type="submit" name="login" value="Delete all data in database">
+		</form>
+		
+	</div>
+
+
+
+	
 </div>
 
-<div id="div_logout_btn">
-<p><a href="logout.php" id="logout_btn" >Log ud!</a></p>
-</div>
-</div>
 
 
 

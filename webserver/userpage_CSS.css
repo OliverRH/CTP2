@@ -1,0 +1,88 @@
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+#div_live_data {
+  position: absolute;
+  top: 70px;
+  left: 15px;
+  width: 200px;
+  height: 80%;
+}
+
+#chartContainer {
+  position: absolute;
+  top: 50px;
+  right: 15px;
+  width: -webkit-calc(100% - 300px);
+  width:    -moz-calc(100% - 300px);
+  width:         calc(100% - 300px);
+  height: 80%;
+}
+
+body {
+  background: #f4f4f4;
+  color: #5a5656;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.btn-group {
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+	position: absolute;
+	bottom: 5%;
+  
+}
+
+.btn-group_button{
+  background-color: #008dde;
+  font-family: inherit;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 10px 20px 10px 20px;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+  
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.btn-group_button:hover {
+  background-color: #2baefa;
+}
