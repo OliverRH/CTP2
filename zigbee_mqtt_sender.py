@@ -39,7 +39,7 @@ def room_to_color_LED(zigbbe_addr, room):
     elif room == 5:
         payload = {"color":{"r":255,"g":0,"b":255}} #megenta
     else:
-        print("Invalid room number: " + room)
+        print("Invalid room number: " + str(room))
     
     json_str = json.dumps(payload)
     mqtt_publisher(zigbbe_addr, json_str)

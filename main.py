@@ -46,7 +46,7 @@ def on_message(client, userdata, msg):
     tmp = tmp.split(",")
     tmp = tmp[4].split(":")
     occupancy = tmp[1]
-    print("Anyone there?: " + occupancy )
+    print("Anyone there?: " + occupancy)
     #movement = lux_threshold_bool(lux, 430)
     movement = str2bool(occupancy)
     turn_on_off(LED_zigbee_addr, movement)    

@@ -13,6 +13,8 @@ payload = {"state":"OFF"}
 json_str = json.dumps(payload)
 print(json_str)
 
+
+
 client.publish("zigbee2mqtt/0x842e14fffe9e2d85/set", json_str)
 
 client.disconnect()
