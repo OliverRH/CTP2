@@ -1,5 +1,7 @@
 # CTP2 Project
 
+{"battery":100,"illuminance":839,"illuminance_lux":839,"linkquality":141,"occupancy":true,"temperature":25,"voltage":3025}
+
 Simple overview of use/purpose.
 
 ## Description
