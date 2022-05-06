@@ -41,10 +41,11 @@ def on_message(client, userdata, msg):
     msg.payload = msg.payload.decode("utf-8") #Converts message from MQTT publisher to utf-8 string
     tmp = msg.payload
     tmp = tmp.split(",")
-    tmp = tmp[1].split(":")
-    lux = tmp[1]
-    print("Lux: " + lux)
-    movement = lux_threshold_bool(lux, 430)
+    tmp = tmp[4].split(":")
+    occupancy = tmp[1]
+    print("Anyone there?: " + occupancy )
+    #movement = lux_threshold_bool(lux, 430)
+    movement = str2bool(occupancy)
     turn_on_off(LED_zigbee_addr, movement)    
     #movement = str2bool(msg.payload) #Converts payload string from MQTT publisher to movement boolean
     #print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
