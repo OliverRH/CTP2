@@ -45,9 +45,9 @@ def on_message(client, userdata, msg):
     msg.payload = msg.payload.decode("utf-8") #Converts message from MQTT publisher to utf-8 string
     tmp = msg.payload
     tmp = tmp.split("}")
-    print(tmp)
+    room = tmp[1]
+    print(room)
     tmp = tmp[0].split(",")
-    
     tmp = tmp[4].split(":")
     occupancy = tmp[1]
     print("Anyone there?: " + occupancy)
