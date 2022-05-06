@@ -50,7 +50,7 @@ def on_message(client, userdata, msg):
     occupancy_tmp = tmp[4].split(":")
     occupancy =  occupancy_tmp[1]
     
-    if (tmp[7] == True):
+    if (tmp[7] in tmp):
         room_tmp = tmp[7].split(":")
         room = room_tmp[1]
     
