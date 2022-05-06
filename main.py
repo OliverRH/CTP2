@@ -44,10 +44,10 @@ def on_message(client, userdata, msg):
     global movement #Global movement variable
     msg.payload = msg.payload.decode("utf-8") #Converts message from MQTT publisher to utf-8 string
     tmp = msg.payload
-    tmp = tmp.split("}")
-    room = tmp[1]
-    print(room)
-    tmp = tmp[0].split(",")
+    #room = tmp
+    #print(room)
+    tmp = tmp.split(",")
+    print(tmp)
     tmp = tmp[4].split(":")
     occupancy = tmp[1]
     print("Anyone there?: " + occupancy)
