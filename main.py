@@ -53,6 +53,8 @@ def on_message(client, userdata, msg):
     if 7 < len(tmp):
         room_tmp = tmp[7].split(":")
         room = room_tmp[1]
+    else:
+        room = "1"
     
     print("Anyone there?: " + occupancy)
     #movement = lux_threshold_bool(lux, 430)
