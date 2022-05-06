@@ -80,12 +80,11 @@ def insert_sql(ip_host, db_user, db_pass, db_name, table_name, table_columns_nam
     print(mycursor.rowcount, "record inserted.")
 
 
-def insert_timestamp():
+def insert_timestamp(room_number):
     now = datetime.now() # current date and time
     date_time = now.strftime("%Y-%m-%d %H:%M:%S")  
-
-    CTP2_db_table_columns_values = ["Time"]
-    column_values = "'" + CTP2_db_table_columns_values[0] + "'" + ", " + "'" + date_time + "'"
+    
+    column_values = "'" + room_number + "'" + ", " + "'" + date_time + "'"
 
     config.read('config_db.ini')
     print(config['mySQL_login']['db_user'])
@@ -95,10 +94,10 @@ def insert_timestamp():
     db_pass = config['mySQL_login']['db_pass']
     
     CTP2_db_name = config['mySQL_db']['ctp2_db_name']
-    CTP2_db_table_name = config['mySQL_db']['ctp2_db_table_room']
+    CTP2_db_table_room = config['mySQL_db']['ctp2_db_table_room']
     
-    column_names = config['mySQL_db']['ctp2_db_table__room_columns_names']
+    column_names_room = config['mySQL_db']['ctp2_db_table_room_columns_names']
 
-    insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_name, column_names, column_values)
+    insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, column_names_room, column_values)
 
     
