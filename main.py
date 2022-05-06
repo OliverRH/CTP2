@@ -1,3 +1,4 @@
+from ast import If
 from cProfile import run
 from pydoc import cli
 from traceback import print_tb
@@ -42,14 +43,17 @@ def str2bool(v): #Converts string to boolean
 movement = False #Definds movement boolean to false
 def on_message(client, userdata, msg):
     global movement #Global movement variable
+    global room #Global movement variable
     msg.payload = msg.payload.decode("utf-8") #Converts message from MQTT publisher to utf-8 string
     tmp = msg.payload
-    #room = tmp
-    #print(room)
     tmp = tmp.split(",")
-    print(tmp)
-    tmp = tmp[4].split(":")
-    occupancy = tmp[1]
+    occupancy_tmp = tmp[4].split(":")
+    occupancy =  occupancy_tmp[1]
+    
+    if (tmp[7] == True):
+        room_tmp = tmp[7].split(":")
+        room = room_tmp[1]
+    
     print("Anyone there?: " + occupancy)
     #movement = lux_threshold_bool(lux, 430)
     movement = str2bool(occupancy)
