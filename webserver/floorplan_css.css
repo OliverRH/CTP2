@@ -1,0 +1,252 @@
+
+
+html, body {
+  font-family: 'Arial', cursive;
+  background: #f7f7f7;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#msg {
+  position: absolute;  
+  left: 40px;
+  top: 0;
+  font-size: 1.5em;
+}
+
+#plan {
+  margin: 25px 35%;
+  width: 400px;
+}
+
+.room {
+  position: relative;
+  border: black 5px solid; 
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.room:before {         /* window */
+  content: "";
+  position: absolute;
+}
+
+.room:after {           /* door */
+  content: "";
+  position: absolute;
+}
+
+.roomName {
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold; 
+  font-size: 1em;
+  top: 5px;
+  color: #1658f4;
+}
+
+
+/******************************************/
+/*  BULB                                  */
+/******************************************/
+.simple-bulb {
+  visibility: hidden;
+  position: absolute;
+  right: -10px;
+  top: 2px;
+  width: 50px;
+}
+
+.base {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 15px;
+  border-radius: 90px 90px 0 0;
+  -moz-border-radius: 90px 90px 0 0;
+  -webkit-border-radius: 90px 90px 0 0;
+  background: #424242;
+}
+
+.base:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  height: 5px;
+  width: 25px;
+  border-radius: 30px 30px 0 0;
+  -moz-border-radius: 30px 30px 0 0;
+  -webkit-border-radius: 30px 30px 0 0;
+  border-bottom: 2px solid #aaa;
+  background: #424242;
+}
+
+.base:after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: -5px;
+  height: 5px;
+  width: 25px;
+  border-bottom: 2px solid #aaa;
+  background: #424242;
+}
+
+.light {
+  position: relative;
+  top: 14px;
+  left: -5px;
+  height: 5px;
+  width: 25px;
+  background: #f9f981;
+}
+
+.light:after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: -7px;
+  height: 30px;
+  width: 40px;
+  border-radius: 35px 35px 50px 50px;
+  -moz-border-radius: 35px 35px 50px 50px;
+  -webkit-border-radius: 35px 35px 50px 50px; 
+  background: #f9f981;
+}
+
+.light:before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  height: 8px;
+  width: 8px;
+  border-radius: 90px 40px 90px 40px;
+  -moz-border-radius: 90px 40px 90px 40px;
+  -webkit-border-radius: 90px 40px 90px 40px; 
+  background: #fcffc1;
+  z-index: 1;
+}
+
+/******************************************/
+/*  ROOMS                                 */
+/******************************************/
+
+/* Bedroom */
+div[class^="room"]:nth-child(2) {
+  left: 0;
+  top: 0;
+  width: 180px;
+  height: 120px;
+  border-style: solid solid solid solid;
+  border-color: black black black black;
+}
+
+div[class^="room"]:nth-child(2):before {
+  top: 25px;
+  left: -2%;
+  height: 60px;
+  border: 1px solid #fff; 
+  }
+
+div[class^="room"]:nth-child(2):after {
+  top: 65px;
+  left: 147px;
+  height: 30px;
+  width: 30px;
+  border-width: 2px 6px 3px 2px;
+  border-style: solid solid double double;
+  border-color: black #f7f7f7 black black;
+  border-radius: 27px 0 0  0;
+}
+
+/* Office */
+div[class^="room"]:nth-child(3) {
+  left: 185px;
+  top: -130px;
+  width: 100px;
+  height: 120px;
+  border-left-color: transparent; 
+  line-height: 100px;  /* FIXME: center text */
+}
+
+div[class^="room"]:nth-child(3):before {
+  top: -4px;
+  left: 20%;
+  width: 60px;
+  border-top: 2px solid #fff; 
+}
+
+div[class^="room"]:nth-child(3):after {
+    top: 65px;
+    left: 68px;
+    height: 30px;
+    width: 30px;
+    border-width: 2px 6px 3px 2px;
+    border-style: solid solid double double;
+    border-color: black #f7f7f7 black black;
+    border-radius: 27px 0 0  0;
+}
+
+/* Hallway */
+div[class^="room"]:nth-child(4) {
+  left: 290px;
+  top: -260px;
+  width: 80px; 
+  height: 250px; 
+  line-height: 100px;
+  border-left-color: transparent;   
+}
+
+div[class^="room"]:nth-child(4):after {
+  right: -5px;
+  bottom: 10%;
+  height: 30px;
+  width: 30px;
+  border-width: 2px 5px 3px 2px;
+  border-style: solid solid double solid;
+  border-color: black #f7f7f7 black black;
+  border-radius: 32px 0 0 0;
+  -moz-border-radius: 32px 0 0 0;
+  -webkit-border-radius: 32px 0 0 0;
+}
+
+/* Bathroom */
+div[class^="room"]:nth-child(5) {
+  left: 375px;
+  top: -350px;
+  width: 120px; 
+  height: 80px; 
+  line-height: 100px;  
+  border-left-color: transparent; 
+}
+
+div[class^="room"]:nth-child(5):before {
+  top: 30px;
+  left: 122px;
+  height: 20px;
+  border: 1px solid #fff; 
+}
+
+/* Filler room */
+div[class^="room"]:nth-child(6) {
+  left: 290px;
+  top: -485px;
+  width: 80px; 
+  height: 125px; 
+  line-height: 100px;
+  border-color: transparent transparent transparent black;    
+}
+
+div[class^="room"]:nth-child(6):before {
+    top: 50px;
+    left: -4px;
+    height: 60px;
+    border: 1px solid #fff; 
+  }
+

@@ -87,7 +87,7 @@ def insert_timestamp(room_number):
     column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + date_time + "'"
 
     config.read('config_db.ini')
-    print(config['mySQL_login']['db_user'])
+    #print(config['mySQL_login']['db_user'])
 
     ip_host = config['mySQL_login']['ip_host']
     db_user = config['mySQL_login']['db_user']
