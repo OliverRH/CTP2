@@ -7,15 +7,17 @@ import configparser
 #----------------------------------------------------------------
 config = configparser.ConfigParser()
     
-def create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_name, CTP2_db_table_columns_names):
+def create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_login, CTP2_db_table_room_columns_names, CTP2_db_table_login_columns_names):
 
     config['mySQL_login'] = {'ip_host': ip_host,
                              'db_user': db_user,
                              'db_pass': db_pass}
     
     config['mySQL_db'] = {'CTP2_db_name': CTP2_db_name,
-                          'CTP2_db_table_name': CTP2_db_table_name,
-                          'CTP2_db_table_columns_names': ', '.join(CTP2_db_table_columns_names)}
+                          'CTP2_db_table_room': CTP2_db_table_room,
+                          'CTP2_db_table_login': CTP2_db_table_login,
+                          'CTP2_db_table_room_columns_names': ', '.join(CTP2_db_table_room_columns_names),
+                          'CTP2_db_table_login_columns_names': ', '.join(CTP2_db_table_login_columns_names)}
     
     with open('config_db.ini', 'w+') as configfile:
         config.write(configfile)
@@ -84,12 +86,9 @@ create_database(ip_host, db_user, db_pass, CTP2_db_name)
 time.sleep(1)
 create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_room_columns_create)
 time.sleep(1)
-create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_room_columns_names)
-
-
 create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_create)
 time.sleep(1)
-create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names)
+create_config_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_login,CTP2_db_table_room_columns_names, CTP2_db_table_login_columns_names)
 time.sleep(1)
 #CTP2_db_table_login_columns_values =  "NULL" + ", " + userlogin + ", " + userpass + ", " + usertype
 
