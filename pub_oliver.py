@@ -20,8 +20,8 @@ json_str = json.loads(payload)
 print(json_str)
 
 client = mqtt.Client()
-client.connect(Pi_ip_address, Pi_ip_port) 
-client.publish(Sensor_zigbee_addr, str(json_str)) 
+client.connect("192.168.87.146", Pi_ip_port) 
+client.publish("zigbee2mqtt/0x842e14fffe9e2d85/set", str(json_str)) 
 client.disconnect()
 
 
