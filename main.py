@@ -10,7 +10,8 @@ import paho.mqtt.client as mqtt
 import configparser
 import sys
 
-room = sys.argv[1]
+
+room = 1
 
 #Read from config_zigbee.ini file
 #----------------------------------------------------------------
