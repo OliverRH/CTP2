@@ -11,7 +11,7 @@ config.read('config_zigbee.ini')
 
 Pi_ip_address = config['zigbee2mqtt']['pi_ip_address']
 Pi_ip_port = int(config['zigbee2mqtt']['pi_ip_port'])
-Sensor_zigbee_addr = config['zigbee2mqtt']['zigbee_subscriber_address']
+LED_zigbee_addr = config['zigbee2mqtt']['zigbee_publisher_address']
 
 payload = """{"battery":"100","illuminance":"839","illuminance_lux":"839","linkquality":"141","occupancy":"true","temperature":"25","voltage":"3025"}"""
 
@@ -20,7 +20,7 @@ print(json_str)
 
 client = mqtt.Client()
 client.connect(Pi_ip_address, Pi_ip_port) 
-client.publish(Sensor_zigbee_addr, payload) 
+client.publish(LED_zigbee_addr, payload) 
 client.disconnect()
 
 
