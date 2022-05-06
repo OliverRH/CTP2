@@ -16,6 +16,12 @@ Sensor_zigbee_addr = config['zigbee2mqtt']['zigbee_subscriber_address']
 
 payload = """{"battery":100,"illuminance":839,"illuminance_lux":839,"linkquality":141,"occupancy":true,"temperature":25,"voltage":3025}"""
 
+tmp = payload
+tmp = tmp.split(",")
+tmp = tmp[4].split(":")
+occupancy = tmp[1]
+print("Anyone there?: " + occupancy)
+
 json_str = json.loads(payload)
 print(json_str)
 
