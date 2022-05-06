@@ -21,7 +21,7 @@ print(json_str)
 
 client = mqtt.Client()
 client.connect(Pi_ip_address, Pi_ip_port) 
-client.publish(LED_zigbee_addr, payload) 
+client.publish(Sensor_zigbee_addr, payload) 
 client.disconnect()
 
 
