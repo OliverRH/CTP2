@@ -3,7 +3,7 @@ import json
 
 client = mqtt.Client()
 
-client.connect("192.168.87.146", 1883)
+client.connect("localhost", 1883)
 #{"state":"ON"}
 #{"state":"OFF"}
 #{"color":{"r":88,"g":102,"b":20}} grøn
@@ -15,7 +15,7 @@ print(json_str)
 
 
 
-client.publish("zigbee2mqtt/0x842e14fffe9e2d85/set", "true")
+client.publish("testtopic", "true")
 
 client.disconnect()
 

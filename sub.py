@@ -7,8 +7,8 @@ client = mqtt.Client()
 
 client.on_message = on_message
 
-client.connect("192.168.0.96", 1883)
+client.connect("localhost", 1883)
 
-client.subscribe("zigbee2mqtt/0x00158d0005729f18")
+client.subscribe("testtopic")
 
 client.loop_forever()

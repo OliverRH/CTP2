@@ -201,7 +201,7 @@ mysqli_close($conn);
 	<div id="chartContainer"></div>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-
+	
 	<div id="div_live_data">
 		<div id="live_data"></div>
 	</div>
@@ -216,8 +216,43 @@ mysqli_close($conn);
 		
 	</div>
 
+<div id="admin_panel">
+	<form action="" method="post">
+		<div class="inline">
+			<select name="Zigbee_sub">
+				<?php 
+					include ("connect.php");
+					$sql = mysqli_query($conn, "SELECT * FROM db_table_zigbee_sub");
+					while ($row = $sql->fetch_assoc()){
+					echo "<option value=" . $row['Zigbee_name_sub'] . ">" . $row['Zigbee_name_sub'] . ": " . $row['Zigbee_addr_sub'] . "</option>";
+					}
+				?>
+			</select>
+				<select name="Zigbee_pub">
+				<?php 
+					include ("connect.php");
+					$sql = mysqli_query($conn, "SELECT * FROM db_table_zigbee_pub");
+					while ($row = $sql->fetch_assoc()){
+					echo "<option value=" . $row['Zigbee_name_pub'] . ">" . $row['Zigbee_name_pub'] . ": " . $row['Zigbee_addr_pub'] . "</option>";
+					}
+				?>
+			</select>
+			<input type="submit" name="submit" value = "Choose this combination">
+		</div>
+	</form>
+</div>
+		
+
+<?php
+    if(isset($_POST['submit'])){
+		$selected1 = $_POST['Zigbee_sub'];
+		$selected2 = $_POST['Zigbee_pub'];
+        echo 'You have chosen: ' . $selected1 . " --> " . $selected2;
+    };
 
 
+
+?>
 	
 </div>
 

@@ -73,7 +73,6 @@ def create_table_in_database(ip_host, db_user, db_pass, db_name, new_table_name,
 def insert_sql(ip_host, db_user, db_pass, db_name, table_name, table_columns_names, table_columns_values):
     mydb = connect_to_db(ip_host, db_user, db_pass, db_name)
     sql = "INSERT INTO " + table_name + " (" + table_columns_names + ") VALUES " + "(" + table_columns_values + ")"
-    print(sql)
     mycursor = mydb.cursor()
     mycursor.execute(sql)
     mydb.commit()
