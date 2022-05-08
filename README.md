@@ -25,7 +25,7 @@ Before anything, you must grant permission on the host database software. This i
 ### Create database
 To automatically create and setup the database for this project, run the following command:
 ```
-python3 setup_database_for_CTP2.py <ip-address of host> <database username> <database password>
+python3 setup_database_for_CTP2.py
 ```
 This creates the database needed for this project on the specified host.
 If you want the database on your own computer, then use "localhost" as "ip-address of host".
