@@ -61,6 +61,11 @@ def on_message(client, userdata, msg):
     #print(msg.topic + " " + str(msg.payload)) #Prints topic string and message string from MQTT publisher
 #----------------------------------------------------------------
 
+#Tesing variables
+#----------------------------------------------------------------
+
+#----------------------------------------------------------------
+
 #Main forever loop
 #----------------------------------------------------------------
 while True: #While loops runs forever
