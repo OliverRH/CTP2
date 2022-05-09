@@ -8,8 +8,10 @@ with open('/opt/zigbee2mqtt/data/configuration.yaml') as f:
     
     devices = data['devices']
     print(devices)
-    friendly_devices = devices['friendly_name']    
-    print(friendly_devices)
+    #friendly_devices = devices['friendly_name']    
+    #print(friendly_devices)
+    
+    print(len(devices))
     
     for device in devices:
         print(device)
