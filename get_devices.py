@@ -18,7 +18,7 @@ with open('/opt/zigbee2mqtt/data/configuration.yaml') as f:
     
     for device in devices:
         print(device)
-        array_devices.append = devices
+        array_devices.append(devices)
     
     print(array_devices)
     
