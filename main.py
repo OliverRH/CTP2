@@ -70,11 +70,14 @@ while True: #While loops runs forever
         while time.monotonic() < t_end: #While the time is less than t_end then run
             client.on_message = on_message #Runs on_message (not function therefore no parentheses)
         print("Any movement at " + now.strftime("%Y-%m-%d %H:%M:%S") + " " + str(movement)) #prints the current date and time, but commented our due to high system usage.
-        while time.monotonic() < (time.monotonic() + 30): #While the time is less than t_end then run
-            if movement == True: #If movement is True, then insert date and time into the database.
-                print("Insert SQL") #Placeholder for insert_sql command
-                insert_timestamp(room) #Function from setup_database.py. Inserts the date and time into the database
-                room_to_color_LED(LED_zigbee_addr, int(room)) #Changes the color of the LED to signal a specific room
-                movement = False #Resets movement boolean to false after inserting SQL
-        print("FAIAIFIALFIFAL!!!!")
+        temp += 1 
+        if movement == True: #If movement is True, then insert date and time into the database.
+            movement_time = time.monotonic() #Gets python time 
+            print("Insert SQL") #Placeholder for insert_sql command
+            insert_timestamp(room) #Function from setup_database.py. Inserts the date and time into the database
+            room_to_color_LED(LED_zigbee_addr, int(room)) #Changes the color of the LED to signal a specific room
+            movement = False #Resets movement boolean to false after inserting SQL
+            temp = 0
+        elif temp >= 30:
+            print("FAILURE")
 #----------------------------------------------------------------
