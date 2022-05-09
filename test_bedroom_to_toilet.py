@@ -42,11 +42,11 @@ def bedroom_to_toilet_fail():
     
 
 
-what_test = input("Press 1 for 'bedroom_to_toilet_success'\nPress 2 for 'bedroom_to_toilet_fail\nPress 3 to test a custom room\n'")
+what_test = input("Press 1 for 'bedroom_to_toilet_success'\nPress 2 for 'bedroom_to_toilet_fail\nPress 3 to test a custom room\nSelect: ")
 
 if(what_test == "1"):
     bedroom_to_toilet_success()
 elif(what_test == "2"):
     bedroom_to_toilet_fail()
 elif(what_test == "3"):
-    publish(input("Select a room between 1 and 5"))
+    publish(input("Select a room between 1 and 5\nSelect: "))
