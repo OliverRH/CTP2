@@ -61,10 +61,10 @@ CTP2_db_table_login_columns_names = ["id", "username", "user_password", "usertyp
 CTP2_db_table_zigbee_columns_names = ["id", "Zigbee_name", "Zigbee_addr"]
 
 zigbee_name_sensor = str("Sensor")
-zigbee_addr_sensor = str("0x00158d0005729f18")
+zigbee_addr_sensor = str("Sensor")
 
 zigbee_name_LED = str("LED")
-zigbee_addr_LED = str("0x842e14fffe9e2d85")
+zigbee_addr_LED = str("LED")
 #----------------------------------------------------------------
 
 
