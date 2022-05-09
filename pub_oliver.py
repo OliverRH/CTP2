@@ -21,7 +21,7 @@ print(json_str)
 
 client = mqtt.Client()
 client.connect("192.168.87.146", Pi_ip_port) 
-client.publish("zigbee2mqtt/0x00158d0005729f18", payload) 
+client.publish("zigbee2mqtt/LED", payload) 
 client.disconnect()
 
 
