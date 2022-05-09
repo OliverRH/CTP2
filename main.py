@@ -79,7 +79,7 @@ while True: #While loops runs forever
             room_to_color_LED(LED_zigbee_addr, int(room)) #Changes the color of the LED to signal a specific room
             movement = False #Resets movement boolean to false after inserting SQL
             temp = 0
-        elif temp >= 30 and (1 < room < 5):
+        elif temp >= 30 and (1 < int(room) < 5):
             print("FAILURE at " + now.strftime("%Y-%m-%d %H:%M:%S"))
             temp = 0
 #----------------------------------------------------------------
