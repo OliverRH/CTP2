@@ -13,6 +13,7 @@ import sys
 
 
 room = "1" #Defines room number 1 as default
+temp = 0
 
 #Read from config_zigbee.ini file
 #----------------------------------------------------------------
