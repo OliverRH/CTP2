@@ -222,18 +222,18 @@ mysqli_close($conn);
 			<select name="Zigbee_sub">
 				<?php 
 					include ("connect.php");
-					$sql = mysqli_query($conn, "SELECT * FROM db_table_zigbee_sub");
+					$sql = mysqli_query($conn, "SELECT * FROM db_table_zigbee");
 					while ($row = $sql->fetch_assoc()){
-					echo "<option value=" . $row['Zigbee_name_sub'] . ">" . $row['Zigbee_name_sub'] . ": " . $row['Zigbee_addr_sub'] . "</option>";
+					echo "<option value=" . $row['Zigbee_name'] . ">" . $row['Zigbee_addr'] . "</option>";
 					}
 				?>
 			</select>
 				<select name="Zigbee_pub">
 				<?php 
 					include ("connect.php");
-					$sql = mysqli_query($conn, "SELECT * FROM db_table_zigbee_pub");
+					$sql = mysqli_query($conn, "SELECT * FROM db_table_zigbee");
 					while ($row = $sql->fetch_assoc()){
-					echo "<option value=" . $row['Zigbee_name_pub'] . ">" . $row['Zigbee_name_pub'] . ": " . $row['Zigbee_addr_pub'] . "</option>";
+					echo "<option value=" . $row['Zigbee_name'] . ">" . $row['Zigbee_name'] . "</option>";
 					}
 				?>
 			</select>
