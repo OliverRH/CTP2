@@ -55,7 +55,7 @@ print("----------------------------------------------------------------\n")
 CTP2_db_name = str("HAJTEK_Smart_Home_Care") #Name of the database
 CTP2_db_table_room = str("db_table_room")
 CTP2_db_table_login = str("db_table_login")
-CTP2_db_table_zigbee = str("db_table_zigbee_sub")
+CTP2_db_table_zigbee = str("db_table_zigbee")
 CTP2_db_table_room_columns_names = ["id", "Pi_room", "Pi_time"]
 CTP2_db_table_login_columns_names = ["id", "username", "user_password", "usertype"]
 CTP2_db_table_zigbee_columns_names = ["id", "Zigbee_name", "Zigbee_addr"]
@@ -118,10 +118,11 @@ zigbee_columns_names = CTP2_db_table_zigbee_columns_names[0] + ", " + CTP2_db_ta
 
 CTP2_db_table_zigbee_columns_values_sensor = "NULL, " + "'" + zigbee_name_sensor + "'" + ", " + "'" + zigbee_addr_sensor + "'"
 CTP2_db_table_zigbee_columns_values_LED = "NULL, " + "'" + zigbee_name_LED + "'" + ", " + "'" + zigbee_addr_LED + "'" 
-print("CTP2_db_table_zigbee_pub_columns_values: " + CTP2_db_table_zigbee_columns_values_sensor)
 
+print("CTP2_db_table_zigbee_pub_columns_values: " + CTP2_db_table_zigbee_columns_values_sensor)
 insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee, zigbee_columns_names, CTP2_db_table_zigbee_columns_values_sensor)
 time.sleep(1)
+print("CTP2_db_table_zigbee_pub_columns_values: " + CTP2_db_table_zigbee_columns_values_LED)
 insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee, zigbee_columns_names, CTP2_db_table_zigbee_columns_values_LED)
 
 
