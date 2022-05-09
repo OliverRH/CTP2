@@ -55,18 +55,16 @@ print("----------------------------------------------------------------\n")
 CTP2_db_name = str("HAJTEK_Smart_Home_Care") #Name of the database
 CTP2_db_table_room = str("db_table_room")
 CTP2_db_table_login = str("db_table_login")
-CTP2_db_table_zigbee_sub = str("db_table_zigbee_sub")
-CTP2_db_table_zigbee_pub = str("db_table_zigbee_pub")
+CTP2_db_table_zigbee = str("db_table_zigbee_sub")
 CTP2_db_table_room_columns_names = ["id", "Pi_room", "Pi_time"]
 CTP2_db_table_login_columns_names = ["id", "username", "user_password", "usertype"]
-CTP2_db_table_zigbee_sub_columns_names = ["id", "Zigbee_name_sub", "Zigbee_addr_sub"]
-CTP2_db_table_zigbee_pub_columns_names = ["id", "Zigbee_name_pub", "Zigbee_addr_pub"]
+CTP2_db_table_zigbee_columns_names = ["id", "Zigbee_name", "Zigbee_addr"]
 
-zigbee_name_sub = str("Sensor")
-zigbee_addr_sub = str("0x00158d0005729f18")
+zigbee_name_sensor = str("Sensor")
+zigbee_addr_sensor = str("0x00158d0005729f18")
 
-zigbee_name_pub = str("LED")
-zigbee_addr_pub = str("0x842e14fffe9e2d85")
+zigbee_name_LED = str("LED")
+zigbee_addr_LED = str("0x842e14fffe9e2d85")
 #----------------------------------------------------------------
 
 
@@ -103,9 +101,7 @@ CTP2_db_table_room_columns_create = "(" + CTP2_db_table_room_columns_names[0] + 
 CTP2_db_table_login_columns_create = "(" + CTP2_db_table_login_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_login_columns_names[1] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_login_columns_names[2] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_login_columns_names[3] + " VARCHAR(20) NOT NULL, PRIMARY KEY (" + CTP2_db_table_login_columns_names[0] + "))"      
 #column_names_login = CTP2_db_table_login_columns_names[0] + ", " + CTP2_db_table_login_columns_names[1]
 
-CTP2_db_table_zigbee_sub_columns_create = "(" + CTP2_db_table_zigbee_sub_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_zigbee_sub_columns_names[1] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_zigbee_sub_columns_names[2] + " VARCHAR(100) NOT NULL, PRIMARY KEY (" + CTP2_db_table_zigbee_sub_columns_names[0] + "))"      
-CTP2_db_table_zigbee_pub_columns_create = "(" + CTP2_db_table_zigbee_pub_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_zigbee_pub_columns_names[1] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_zigbee_pub_columns_names[2] + " VARCHAR(100) NOT NULL, PRIMARY KEY (" + CTP2_db_table_zigbee_pub_columns_names[0] + "))"      
-  
+CTP2_db_table_zigbee_columns_create = "(" + CTP2_db_table_zigbee_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_zigbee_columns_names[1] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_zigbee_columns_names[2] + " VARCHAR(100) NOT NULL, PRIMARY KEY (" + CTP2_db_table_zigbee_columns_names[0] + "))"      
 
 create_database(ip_host, db_user, db_pass, CTP2_db_name)
 time.sleep(1)
@@ -113,22 +109,20 @@ create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_
 time.sleep(1)
 create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_create)
 time.sleep(1)
-create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee_sub, CTP2_db_table_zigbee_sub_columns_create)
+create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee, CTP2_db_table_zigbee_columns_create)
 time.sleep(1)
-create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee_pub, CTP2_db_table_zigbee_pub_columns_create)
-time.sleep(1)
-create_config_zigbee_file(zigbee_addr_sub, zigbee_addr_pub)
+create_config_zigbee_file(zigbee_addr_sensor, zigbee_addr_LED)
 time.sleep(1)
 
-zigbee_sub_columns_names = CTP2_db_table_zigbee_sub_columns_names[0] + ", " + CTP2_db_table_zigbee_sub_columns_names[1] + ", " + CTP2_db_table_zigbee_sub_columns_names[2]
-zigbee_pub_columns_names = CTP2_db_table_zigbee_pub_columns_names[0] + ", " + CTP2_db_table_zigbee_pub_columns_names[1] + ", " + CTP2_db_table_zigbee_pub_columns_names[2]
+zigbee_columns_names = CTP2_db_table_zigbee_columns_names[0] + ", " + CTP2_db_table_zigbee_columns_names[1] + ", " + CTP2_db_table_zigbee_columns_names[2]
 
-CTP2_db_table_zigbee_sub_columns_values = "NULL, " + "'" + zigbee_name_sub + "'" + ", " + "'" + zigbee_addr_sub + "'" 
-CTP2_db_table_zigbee_pub_columns_values = "NULL, " + "'" + zigbee_name_pub + "'" + ", " + "'" + zigbee_addr_pub + "'"
-print("CTP2_db_table_zigbee_pub_columns_values: " + CTP2_db_table_zigbee_pub_columns_values)
+CTP2_db_table_zigbee_columns_values_sensor = "NULL, " + "'" + zigbee_name_sensor + "'" + ", " + "'" + zigbee_addr_sensor + "'"
+CTP2_db_table_zigbee_columns_values_LED = "NULL, " + "'" + zigbee_name_LED + "'" + ", " + "'" + zigbee_addr_LED + "'" 
+print("CTP2_db_table_zigbee_pub_columns_values: " + CTP2_db_table_zigbee_columns_values_sensor)
 
-insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee_sub, zigbee_sub_columns_names, CTP2_db_table_zigbee_sub_columns_values)
-insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee_pub, zigbee_pub_columns_names, CTP2_db_table_zigbee_pub_columns_values)
+insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee, zigbee_columns_names, CTP2_db_table_zigbee_columns_values_sensor)
+time.sleep(1)
+insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee, zigbee_columns_names, CTP2_db_table_zigbee_columns_values_LED)
 
 
 #print(CTP2_db_table_login_columns_values)
