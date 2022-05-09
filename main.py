@@ -13,7 +13,7 @@ import sys
 
 
 room = "1" #Defines room number 1 as default
-temp = 0
+temp = 0 #Defines count value 
 
 #Read from config_zigbee.ini file
 #----------------------------------------------------------------
@@ -71,18 +71,18 @@ while True: #While loops runs forever
         while time.monotonic() < t_end: #While the time is less than t_end then run
             client.on_message = on_message #Runs on_message (not function therefore no parentheses)
         print("Any movement at " + now.strftime("%Y-%m-%d %H:%M:%S") + " " + str(movement)) #prints the current date and time, but commented our due to high system usage.
-        temp += 1 
+        temp += 1 #Count +1 every time the loop loops (every one second)
         if movement == True: #If movement is True, then insert date and time into the database.
             movement_time = time.monotonic() #Gets python time 
             print("Insert SQL") #Placeholder for insert_sql command
             insert_timestamp(room) #Function from setup_database.py. Inserts the date and time into the database
-            if room == "5":
-                insert_timestamp_success_failures(room, "Success") 
             room_to_color_LED(LED_zigbee_addr, int(room)) #Changes the color of the LED to signal a specific room
+            if room == "5": #If the person moved to room 5, then insert Success in database
+                insert_timestamp_success_failures(room, "Success") 
             movement = False #Resets movement boolean to false after inserting SQL
-            temp = 0
-        elif temp >= 30 and (1 < int(room) < 5):
-            print("FAILURE at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+            temp = 0 #Resest value is there is a movement
+        elif temp >= 30 and (1 < int(room) < 5): #If there is no movement after 30 seconds and the person is at any other room that bedroom (1) or toilet (5) then insert Failure in database
+            print("Failure at: " + now.strftime("%Y-%m-%d %H:%M:%S") + " No movement for 30 seconds in room 2, 3 or 4. ")
             insert_timestamp_success_failures(room, "Failure") 
-            temp = 0
+            temp = 0 #Resest value is there is a movement
 #----------------------------------------------------------------
