@@ -76,10 +76,12 @@ while True: #While loops runs forever
             movement_time = time.monotonic() #Gets python time 
             print("Insert SQL") #Placeholder for insert_sql command
             insert_timestamp(room) #Function from setup_database.py. Inserts the date and time into the database
+            insert_timestamp_success_failures(room, "Success") 
             room_to_color_LED(LED_zigbee_addr, int(room)) #Changes the color of the LED to signal a specific room
             movement = False #Resets movement boolean to false after inserting SQL
             temp = 0
         elif temp >= 30 and (1 < int(room) < 5):
             print("FAILURE at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+            insert_timestamp_success_failures(room, "Failure") 
             temp = 0
 #----------------------------------------------------------------

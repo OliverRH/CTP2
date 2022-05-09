@@ -7,7 +7,7 @@ import configparser
 #----------------------------------------------------------------
 config = configparser.ConfigParser()
     
-def create_config_db_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_login, CTP2_db_table_room_columns_names, CTP2_db_table_login_columns_names):
+def create_config_db_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_login, CTP2_db_table_success_failures, CTP2_db_table_room_columns_names, CTP2_db_table_login_columns_names, CTP2_db_table_success_failures_columns_names):
 
     config['mySQL_login'] = {'ip_host': ip_host,
                              'db_user': db_user,
@@ -16,8 +16,10 @@ def create_config_db_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table
     config['mySQL_db'] = {'CTP2_db_name': CTP2_db_name,
                           'CTP2_db_table_room': CTP2_db_table_room,
                           'CTP2_db_table_login': CTP2_db_table_login,
+                          'CTP2_db_table_success_failures': CTP2_db_table_success_failures,
                           'CTP2_db_table_room_columns_names': ', '.join(CTP2_db_table_room_columns_names),
-                          'CTP2_db_table_login_columns_names': ', '.join(CTP2_db_table_login_columns_names)}
+                          'CTP2_db_table_login_columns_names': ', '.join(CTP2_db_table_login_columns_names),
+                          'CTP2_db_table_success_failures_columns_names': ', '.join(CTP2_db_table_success_failures_columns_names)}
     
     with open('config_db.ini', 'w+') as configfile:
         config.write(configfile)
@@ -119,6 +121,8 @@ time.sleep(1)
 create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_success_failures, CTP2_db_table_success_failures_columns_create)
 time.sleep(1)
 create_config_zigbee_file(zigbee_addr_sensor, zigbee_addr_LED)
+time.sleep(1)
+create_config_db_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_login, CTP2_db_table_success_failures, CTP2_db_table_room_columns_names, CTP2_db_table_login_columns_names, CTP2_db_table_success_failures_columns_names)
 time.sleep(1)
 
 zigbee_columns_names = CTP2_db_table_zigbee_columns_names[0] + ", " + CTP2_db_table_zigbee_columns_names[1] + ", " + CTP2_db_table_zigbee_columns_names[2]

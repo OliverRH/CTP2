@@ -99,4 +99,24 @@ def insert_timestamp(room_number):
 
     insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, column_names_room, column_values)
 
+def insert_timestamp_success_failures(room_number, success_failures):
+    now = datetime.now() # current date and time
+    date_time = now.strftime("%Y-%m-%d %H:%M:%S")  
+    
+    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + date_time + "'" + ", " + "'" + success_failures + "'"
+
+    config.read('config_db.ini')
+    #print(config['mySQL_login']['db_user'])
+
+    ip_host = config['mySQL_login']['ip_host']
+    db_user = config['mySQL_login']['db_user']
+    db_pass = config['mySQL_login']['db_pass']
+    
+    CTP2_db_name = config['mySQL_db']['ctp2_db_name']
+    CTP2_db_table_room = config['mySQL_db']['ctp2_db_table_success_failures']
+    
+    column_names_room = config['mySQL_db']['ctp2_db_table_success_failures_columns_names']
+
+    insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, column_names_room, column_values)
+
     
