@@ -2,7 +2,6 @@ import paho.mqtt.client as mqtt
 import configparser
 import sys
 import json
-import yaml
 
 room = sys.argv[1]
 
@@ -19,10 +18,6 @@ payload = '{"battery":100,"illuminance":839,"illuminance_lux":839,"linkquality":
 
 json_str = json.dumps(payload)
 print(json_str)
-
-print('After Sorting')
-sorted_data = yaml.dump(json_str, sort_keys=True)
-print(sorted_data)
 
 client = mqtt.Client()
 client.connect("192.168.87.146", Pi_ip_port) 
