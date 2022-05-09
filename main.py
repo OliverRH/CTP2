@@ -80,5 +80,6 @@ while True: #While loops runs forever
             movement = False #Resets movement boolean to false after inserting SQL
             temp = 0
         elif temp >= 30:
-            print("FAILURE")
+            print("FAILURE at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+            temp = 0
 #----------------------------------------------------------------
