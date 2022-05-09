@@ -17,10 +17,12 @@ with open('/opt/zigbee2mqtt/data/configuration.yaml') as f:
     print(len(devices))
     
     for device in devices:
-        print(device)
+        #print(device)
         array_devices.append(devices)
     
-    print(array_devices)
+    #print(array_devices)
+    
+    print(array_devices[0])
     
     """
     print('After Sorting')
