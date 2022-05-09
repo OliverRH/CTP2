@@ -1,3 +1,4 @@
+from ast import While
 import yaml
 from yaml.loader import FullLoader
 
@@ -11,11 +12,15 @@ with open('/opt/zigbee2mqtt/data/configuration.yaml') as f:
     #friendly_devices = devices['friendly_name']    
     #print(friendly_devices)
     
+    array_devices = []
+    
     print(len(devices))
     
     for device in devices:
         print(device)
+        array_devices.append = devices
     
+    print(array_devices)
     
     """
     print('After Sorting')
