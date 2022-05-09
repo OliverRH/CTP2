@@ -85,6 +85,7 @@ while True: #While loops runs forever
             print("Failure at: " + now.strftime("%Y-%m-%d %H:%M:%S") + " No movement for 30 seconds in room 2, 3 or 4. ")
             insert_timestamp_success_failures(room, "Failure") 
             turn_on_off(LED_zigbee_addr, False)
-            #room_to_color_LED(LED_zigbee_addr, 1)
+            time.sleep(1)
+            room_to_color_LED(LED_zigbee_addr, 1)
             temp = 0 #Resest value is there is a movement
 #----------------------------------------------------------------
