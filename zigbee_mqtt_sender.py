@@ -39,6 +39,7 @@ def room_to_color_LED(zigbbe_addr, room):
     elif room == 5:
         payload = {"color":{"r":255,"g":0,"b":255}} #megenta
     else:
+        turn_on_off(zigbbe_addr, False)
         print("Invalid room number: " + str(room) + ", defaults to room 1!")
         payload = {"color":{"r":255,"g":0,"b":0}}  #red
     
