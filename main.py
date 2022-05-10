@@ -18,6 +18,7 @@ state = "inactive"
 start_room_timer = 0
 stop_room_timer = 0
 
+
 #Read from config_zigbee.ini file
 #----------------------------------------------------------------
 config = configparser.ConfigParser()
