@@ -122,7 +122,7 @@ def insert_timestamp_success_failures(room_number, success_failures):
 
 def insert_timer_db(room_number, room_timer):
     time_diff = datetime.now() - room_timer # current date and time
-    diff = time_diff 
+    diff = time_diff.total_seconds()
     print(diff)
     
     column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + diff + "'"
