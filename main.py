@@ -76,7 +76,7 @@ while True: #While loops runs forever
         t_end = time.monotonic() + 1 #Gets python time and adds one second
         while time.monotonic() < t_end: #While the time is less than t_end then run
             client.on_message = on_message #Runs on_message (not function therefore no parentheses)
-        print("Any movement at " + (now.strftime("%Y-%m-%d %H:%M:%S") - now.seconds(5)) + " " + str(movement)) #prints the current date and time, but commented our due to high system usage.
+        print("Any movement at " + (now.strftime("%Y-%m-%d %H:%M:%S") - datetime.second(5)) + " " + str(movement)) #prints the current date and time, but commented our due to high system usage.
         temp += 1 #Count +1 every time the loop loops (every one second)
         if movement == True: #If movement is True, then insert date and time into the database.
             insert_timer_db(room, start_room_timer)
