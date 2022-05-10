@@ -106,7 +106,7 @@ print("----------------------------------------------------------------\n")
 CTP2_db_table_room_columns_create = "(" + CTP2_db_table_room_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_room_columns_names[1] + " INT, " + CTP2_db_table_room_columns_names[2] + " DATETIME, PRIMARY KEY (" + CTP2_db_table_room_columns_names[0] + "))"      
 #column_names_room = CTP2_db_table_room_columns_names[0] + ", " + CTP2_db_table_room_columns_names[1]
 
-CTP2_db_table_room_timer_columns_create = "(" + CTP2_db_table_room_timer_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_room_timer_columns_names[1] + " INT, " + CTP2_db_table_room_timer_columns_names[2] + " DATETIME, PRIMARY KEY (" + CTP2_db_table_room_timer_columns_names[0] + "))"      
+CTP2_db_table_room_timer_columns_create = "(" + CTP2_db_table_room_timer_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_room_timer_columns_names[1] + " INT, " + CTP2_db_table_room_timer_columns_names[2] + " VARCHAR(100) NOT NULL, PRIMARY KEY (" + CTP2_db_table_room_timer_columns_names[0] + "))"      
 
 CTP2_db_table_login_columns_create = "(" + CTP2_db_table_login_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_login_columns_names[1] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_login_columns_names[2] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_login_columns_names[3] + " VARCHAR(20) NOT NULL, PRIMARY KEY (" + CTP2_db_table_login_columns_names[0] + "))"      
 #column_names_login = CTP2_db_table_login_columns_names[0] + ", " + CTP2_db_table_login_columns_names[1]
