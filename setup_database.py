@@ -124,9 +124,9 @@ def insert_timer_db(room_number, room_timer):
     time_diff = datetime.now() - room_timer # current date and time
     diff = time_diff.total_seconds()
     diff_split = str(diff).split('.')
-    print(diff_split)
+    print(diff_split[0])
     
-    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + diff_split + "'"
+    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + diff_split[0] + "'"
 
     config.read('config_db.ini')
     #print(config['mySQL_login']['db_user'])
