@@ -15,6 +15,8 @@ import sys
 room = "1" #Defines room number 1 as default
 temp = 0 #Defines count value 
 state = "inactive"
+start_room_timer = 0
+stop_room_timer = 0
 
 #Read from config_zigbee.ini file
 #----------------------------------------------------------------
