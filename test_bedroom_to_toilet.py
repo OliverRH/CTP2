@@ -19,7 +19,7 @@ def publish(room_number):
     
     client = mqtt.Client()
     client.connect("192.168.87.146", Pi_ip_port) 
-    client.publish("zigbee2mqtt/Sensor", payload) 
+    client.publish("zigbee2mqtt/Sensor1234", payload) 
     client.disconnect()
 
 def bedroom_to_toilet_success():
