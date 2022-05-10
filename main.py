@@ -76,7 +76,7 @@ while True: #While loops runs forever
         t_end = time.monotonic() + 1 #Gets python time and adds one second
         while time.monotonic() < t_end: #While the time is less than t_end then run
             client.on_message = on_message #Runs on_message (not function therefore no parentheses)
-        print("Any movement at " + (now.strftime("%Y-%m-%d %H:%M:%S") - datetime.second(5)) + " " + str(movement)) #prints the current date and time, but commented our due to high system usage.
+        print("Any movement at " + now.strftime("%Y-%m-%d %H:%M:%S") + " " + str(movement)) #prints the current date and time, but commented our due to high system usage.
         temp += 1 #Count +1 every time the loop loops (every one second)
         if movement == True: #If movement is True, then insert date and time into the database.
             insert_timer_db(room, start_room_timer)
@@ -89,7 +89,7 @@ while True: #While loops runs forever
                 insert_timestamp_success_failures(room, "Success") 
             movement = False #Resets movement boolean to false after inserting SQL
             temp = 0 #Resest value is there is a movement
-            start_room_timer = datetime.now()
+            start_room_timer = time.monotonic()
         elif temp >= 30 and (1 < int(room) < 5): #If there is no movement after 30 seconds and the person is at any other room that bedroom (1) or toilet (5) then insert Failure in database
             print("Failure at: " + now.strftime("%Y-%m-%d %H:%M:%S") + " No movement for 30 seconds in room 2, 3 or 4. ")
             insert_timestamp_success_failures(room, "Failure") 

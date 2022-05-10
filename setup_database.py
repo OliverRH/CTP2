@@ -2,6 +2,7 @@ import mysql.connector
 from mysql.connector import Error
 from datetime import datetime
 import configparser
+import time
 
 config = configparser.ConfigParser()
 
@@ -121,12 +122,14 @@ def insert_timestamp_success_failures(room_number, success_failures):
 
 
 def insert_timer_db(room_number, room_timer):
-    time_diff = datetime.now() - room_timer # current date and time
-    diff = time_diff.total_seconds()
-    diff_split = str(diff).split('.')
-    print(diff_split[0])
+    time_diff = time.monotonic() - room_timer # current date and time
+    #diff = time_diff.total_seconds()
+    #diff_split = str(diff).split('.')
+    #print(diff_split[0])
     
-    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + diff_split[0] + "'"
+    print(time_diff)
+    
+    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + time_diff + "'"
 
     config.read('config_db.ini')
     #print(config['mySQL_login']['db_user'])
