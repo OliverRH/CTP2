@@ -129,7 +129,7 @@ def insert_timer_db(room_number, room_timer):
     
     print(time_diff)
     
-    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + time_diff + "'"
+    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + diff_split[0] + "'"
 
     config.read('config_db.ini')
     #print(config['mySQL_login']['db_user'])
