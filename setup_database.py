@@ -135,9 +135,9 @@ def insert_timer_db(room_number, room_timer):
     db_pass = config['mySQL_login']['db_pass']
     
     CTP2_db_name = config['mySQL_db']['ctp2_db_name']
-    CTP2_db_table_room = config['mySQL_db']['ctp2_db_table_success_failures']
+    CTP2_db_table_room = config['mySQL_db']['ctp2_db_table_room_timer']
     
-    column_names_room = config['mySQL_db']['ctp2_db_table_success_failures_columns_names']
+    column_names_room = config['mySQL_db']['ctp2_db_table_room_timer_columns_names']
 
     insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, column_names_room, column_values)
 
