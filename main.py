@@ -76,6 +76,7 @@ while True: #While loops runs forever
         print("Any movement at " + now.strftime("%Y-%m-%d %H:%M:%S") + " " + str(movement)) #prints the current date and time, but commented our due to high system usage.
         temp += 1 #Count +1 every time the loop loops (every one second)
         if movement == True: #If movement is True, then insert date and time into the database.
+            stop_room_timer = time.monotonic() - start_room_timer
             movement_time = time.monotonic() #Gets python time 
             print("Insert SQL") #Placeholder for insert_sql command
             insert_timestamp(room) #Function from setup_database.py. Inserts the date and time into the database
@@ -84,6 +85,7 @@ while True: #While loops runs forever
                 insert_timestamp_success_failures(room, "Success") 
             movement = False #Resets movement boolean to false after inserting SQL
             temp = 0 #Resest value is there is a movement
+            start_room_timer = time.monotonic()
         elif temp >= 30 and (1 < int(room) < 5): #If there is no movement after 30 seconds and the person is at any other room that bedroom (1) or toilet (5) then insert Failure in database
             print("Failure at: " + now.strftime("%Y-%m-%d %H:%M:%S") + " No movement for 30 seconds in room 2, 3 or 4. ")
             insert_timestamp_success_failures(room, "Failure") 
