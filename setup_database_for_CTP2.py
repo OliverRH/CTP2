@@ -15,11 +15,9 @@ def create_config_db_file(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table
     
     config['mySQL_db'] = {'CTP2_db_name': CTP2_db_name,
                           'CTP2_db_table_room': CTP2_db_table_room,
-                          'CTP2_db_table_room_timer': CTP2_db_table_room_timer,
                           'CTP2_db_table_login': CTP2_db_table_login,
                           'CTP2_db_table_success_failures': CTP2_db_table_success_failures,
                           'CTP2_db_table_room_columns_names': ', '.join(CTP2_db_table_room_columns_names),
-                          'CTP2_db_table_room_timer_columns_names': ', '.join(CTP2_db_table_room_timer_columns_names),
                           'CTP2_db_table_login_columns_names': ', '.join(CTP2_db_table_login_columns_names),
                           'CTP2_db_table_success_failures_columns_names': ', '.join(CTP2_db_table_success_failures_columns_names)}
     
@@ -58,12 +56,10 @@ print("----------------------------------------------------------------\n")
 #----------------------------------------------------------------
 CTP2_db_name = str("HAJTEK_Smart_Home_Care") #Name of the database
 CTP2_db_table_room = str("db_table_room")
-CTP2_db_table_room_timer = str("db_table_room_timer")
 CTP2_db_table_success_failures = str("db_table_success_failures")
 CTP2_db_table_login = str("db_table_login")
 CTP2_db_table_zigbee = str("db_table_zigbee")
 CTP2_db_table_room_columns_names = ["id", "Pi_room", "Pi_time"]
-CTP2_db_table_room_timer_columns_names = ["id", "Pi_room", "Pi_room_timer"]
 CTP2_db_table_success_failures_columns_names = ["id", "Pi_room", "Pi_time", "Status"]
 CTP2_db_table_login_columns_names = ["id", "username", "user_password", "usertype"]
 CTP2_db_table_zigbee_columns_names = ["id", "Zigbee_name", "Zigbee_addr"]
@@ -106,8 +102,6 @@ print("----------------------------------------------------------------\n")
 CTP2_db_table_room_columns_create = "(" + CTP2_db_table_room_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_room_columns_names[1] + " INT, " + CTP2_db_table_room_columns_names[2] + " DATETIME, PRIMARY KEY (" + CTP2_db_table_room_columns_names[0] + "))"      
 #column_names_room = CTP2_db_table_room_columns_names[0] + ", " + CTP2_db_table_room_columns_names[1]
 
-CTP2_db_table_room_timer_columns_create = "(" + CTP2_db_table_room_timer_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_room_timer_columns_names[1] + " INT, " + CTP2_db_table_room_timer_columns_names[2] + " VARCHAR(100) NOT NULL, PRIMARY KEY (" + CTP2_db_table_room_timer_columns_names[0] + "))"      
-
 CTP2_db_table_login_columns_create = "(" + CTP2_db_table_login_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_login_columns_names[1] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_login_columns_names[2] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_login_columns_names[3] + " VARCHAR(20) NOT NULL, PRIMARY KEY (" + CTP2_db_table_login_columns_names[0] + "))"      
 #column_names_login = CTP2_db_table_login_columns_names[0] + ", " + CTP2_db_table_login_columns_names[1]
 
@@ -119,8 +113,6 @@ CTP2_db_table_success_failures_columns_create = "(" + CTP2_db_table_success_fail
 create_database(ip_host, db_user, db_pass, CTP2_db_name)
 time.sleep(1)
 create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, CTP2_db_table_room_columns_create)
-time.sleep(1)
-create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room_timer, CTP2_db_table_room_timer_columns_create)
 time.sleep(1)
 create_table_in_database(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_create)
 time.sleep(1)

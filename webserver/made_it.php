@@ -37,7 +37,7 @@ mysqli_close($conn);
 
 */
 
-$total_sql_data = "SELECT A.id, A.Pi_time, A.Pi_room, TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) AS timedifference FROM db_table_room A INNER JOIN db_table_room B ON B.id = (A.id + 1) ORDER BY A.id ASC";
+$total_sql_data = "SELECT Status, COUNT( Status ) AS thecount, FORMAT(((COUNT( Status ) / ( SELECT MAX(id) FROM `db_table_success_failures`)) * 100 ),0) AS percentage FROM `db_table_success_failures` GROUP BY Status ORDER BY thecount DESC LIMIT 50";
 $total_result_data = mysqli_query($conn, $total_sql_data);
 $total_number_of_rows = mysqli_num_rows($total_result_data);
 
@@ -48,9 +48,7 @@ $data_points = array();
 if ($total_number_of_rows > 0) {
     // output data of each row
     while($row_data = mysqli_fetch_assoc($total_result_data)) {
-    echo "From room: " . $row_data["Pi_room"] . "<br>" .
-    "Time: " . $row_data["Pi_time"] . "<br>" .
-    "Timedifference: " . $row_data["timedifference"] . " seconds" . "<br><br>" ;
+        echo $row_data["Status"] . ": " . $row_data["percentage"] . "%". "<br>" ;
     }
 
 	//echo json_encode($data_points, JSON_NUMERIC_CHECK);
