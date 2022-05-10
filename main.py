@@ -14,6 +14,7 @@ import sys
 
 room = "1" #Defines room number 1 as default
 temp = 0 #Defines count value 
+state = "inactive"
 
 #Read from config_zigbee.ini file
 #----------------------------------------------------------------
@@ -64,9 +65,11 @@ def on_message(client, userdata, msg):
 
 #Main forever loop
 #----------------------------------------------------------------
+print("System is active!")
 while True: #While loops runs forever
     now = datetime.now() #Current date and time
     if 0 <= now.hour < 9 or 9 <= now.hour <= 23: #The system must be active between 22:00 and 9:00. (From 0:00 to 8:59 and 22:00 to 23:59) The system must automatically turn on/off when necessary
+        state = "active"
         t_end = time.monotonic() + 1 #Gets python time and adds one second
         while time.monotonic() < t_end: #While the time is less than t_end then run
             client.on_message = on_message #Runs on_message (not function therefore no parentheses)
