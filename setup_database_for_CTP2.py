@@ -68,11 +68,11 @@ CTP2_db_table_success_failures_columns_names = ["id", "Pi_room", "Pi_time", "Sta
 CTP2_db_table_login_columns_names = ["id", "username", "user_password", "usertype"]
 CTP2_db_table_zigbee_columns_names = ["id", "Zigbee_name", "Zigbee_addr"]
 
-zigbee_name_sensor = str("Sensor")
-zigbee_addr_sensor = str("Sensor")
+zigbee_name_sensor = str("Sensor1234")
+zigbee_addr_sensor = str("Sensor1234")
 
-zigbee_name_LED = str("LED")
-zigbee_addr_LED = str("LED")
+zigbee_name_LED = str("LED1234")
+zigbee_addr_LED = str("LED1234")
 #----------------------------------------------------------------
 
 
