@@ -188,7 +188,7 @@ mysqli_close($conn);
 
 	
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="get_data_JS.js"></script>
+    <script src="get_timediff_JS.js"></script>
     <link rel="stylesheet" href="userpage_CSS.css">
     <title>LIVE - Dashboard</title>
 </head>
@@ -204,6 +204,7 @@ mysqli_close($conn);
 	
 	<div id="div_live_data">
 		<div id="live_data"></div>
+		<div id="live_timediff"></div>
 	</div>
 
 	<div class="btn-group">

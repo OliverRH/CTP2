@@ -121,10 +121,10 @@ def insert_timestamp_success_failures(room_number, success_failures):
 
 
 def insert_timer_db(room_number, room_timer):
-    now = datetime.now() # current date and time
-    date_time = now.strftime("%Y-%m-%d %H:%M:%S")  
+    time_diff = datetime.now() - room_timer # current date and time
+    diff = time_diff.strftime("%Y-%m-%d %H:%M:%S")  
     
-    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + room_timer + "'"
+    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + diff + "'"
 
     config.read('config_db.ini')
     #print(config['mySQL_login']['db_user'])
