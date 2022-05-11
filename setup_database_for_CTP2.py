@@ -48,10 +48,6 @@ print("\nName of database user:", db_user)
 print("\nThe password of database user:", db_pass)
 print("----------------------------------------------------------------\n")
 
-#ip_host = sys.argv[1]
-#db_user = sys.argv[2]
-#db_pass = sys.argv[3]
-
 #Variables for database:
 #----------------------------------------------------------------
 CTP2_db_name = str("HAJTEK_Smart_Home_Care") #Name of the database
@@ -71,44 +67,13 @@ zigbee_name_LED = str("LED1234")
 zigbee_addr_LED = str("LED1234")
 #----------------------------------------------------------------
 
-
-
-
-"""
-userlogin = input("Please pick username for the login on HAJTEK Smart Home Care website: ")
-userpass = input("Please pick password for the login on HAJTEK Smart Home Care website: ")
-
-
-print("Press 1 for admin")
-print("Press 2 for standard user")
-
-usertype_input = int(input(""))
-
-if usertype_input == 1:
-    usertype = "admin"
-elif usertype_input == 2:
-    usertype = "user"
-else:
-    sys.exit("Error! Please try again")
-
-print("\n----------------------------------------------------------------")
-print("Username:", userlogin)
-print("\nPassword:", userpass)
-print("\nUsertype:", usertype)
-
-print("----------------------------------------------------------------\n")
-"""
-
 CTP2_db_table_room_columns_create = "(" + CTP2_db_table_room_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_room_columns_names[1] + " INT, " + CTP2_db_table_room_columns_names[2] + " DATETIME, PRIMARY KEY (" + CTP2_db_table_room_columns_names[0] + "))"      
-#column_names_room = CTP2_db_table_room_columns_names[0] + ", " + CTP2_db_table_room_columns_names[1]
 
 CTP2_db_table_login_columns_create = "(" + CTP2_db_table_login_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_login_columns_names[1] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_login_columns_names[2] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_login_columns_names[3] + " VARCHAR(20) NOT NULL, PRIMARY KEY (" + CTP2_db_table_login_columns_names[0] + "))"      
-#column_names_login = CTP2_db_table_login_columns_names[0] + ", " + CTP2_db_table_login_columns_names[1]
 
 CTP2_db_table_zigbee_columns_create = "(" + CTP2_db_table_zigbee_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_zigbee_columns_names[1] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_zigbee_columns_names[2] + " VARCHAR(100) NOT NULL, PRIMARY KEY (" + CTP2_db_table_zigbee_columns_names[0] + "))"      
 
 CTP2_db_table_success_failures_columns_create = "(" + CTP2_db_table_success_failures_columns_names[0] + " int NOT NULL AUTO_INCREMENT, " + CTP2_db_table_success_failures_columns_names[1] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_success_failures_columns_names[2] + " VARCHAR(100) NOT NULL, " + CTP2_db_table_success_failures_columns_names[3] + " VARCHAR(100) NOT NULL, PRIMARY KEY (" + CTP2_db_table_success_failures_columns_names[0] + "))"      
-
 
 create_database(ip_host, db_user, db_pass, CTP2_db_name)
 time.sleep(1)
@@ -135,8 +100,3 @@ insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee, zigbee
 time.sleep(1)
 print("CTP2_db_table_zigbee_pub_columns_values: " + CTP2_db_table_zigbee_columns_values_LED)
 insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_zigbee, zigbee_columns_names, CTP2_db_table_zigbee_columns_values_LED)
-
-
-#print(CTP2_db_table_login_columns_values)
-
-#insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_login, CTP2_db_table_login_columns_names, CTP2_db_table_login_columns_values)

@@ -33,6 +33,7 @@ def bedroom_to_toilet_success():
     time.sleep(4)
     publish(5)
     
+    
 def bedroom_to_toilet_to_bedroom_success():
     publish(1)
     time.sleep(4)
@@ -60,7 +61,6 @@ def bedroom_to_toilet_fail():
     time.sleep(4)
     publish(3)
     
-
 
 what_test = input("Press 1 for 'bedroom_to_toilet_success'\nPress 2 for 'bedroom_to_toilet_to_bedroom_success'\nPress 3 for 'bedroom_to_toilet_fail\nPress 4 to test a custom room\nSelect: ")
 

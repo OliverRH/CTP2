@@ -24,9 +24,9 @@ session_start();
 <form action="validate.php" method="post">
   <fieldset>
 
-    <p><input type="text" placeholder="Username" name="username" value="" required></p>
+    <p><input type="text" placeholder="Username" name="username" value="" style="text-transform: lowercase" required></p>
 
-    <p><input type="password" placeholder="Password" name="password" value="" required></p>
+    <p><input type="password" placeholder="Password" name="password" value=""required></p>
 
     <p><input class="button" type="submit"
                      name="login" value="Sign In"></p>

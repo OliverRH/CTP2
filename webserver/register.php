@@ -24,7 +24,7 @@ session_start();
 <form action="new_user2.php" method="post">
   <fieldset>
 
-    <p><input type="text" placeholder="Username" name="input_username" value="" required></p>
+    <p><input type="text" placeholder="Username" name="input_username" value="" style="text-transform: lowercase" required></p>
     
 
     <p><input type="password" placeholder="Password" name="input_password" value="" required></p>
