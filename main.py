@@ -74,6 +74,7 @@ while True: #While loops runs forever
         while time.monotonic() < t_end: #While the time is less than t_end then run
             client.on_message = on_message #Runs on_message (not function therefore no parentheses)
         print("Any movement at " + now.strftime("%Y-%m-%d %H:%M:%S") + " " + str(movement)) #prints the current date and time, but commented our due to high system usage.
+        print("Room: " + room)
         temp += 1 #Count +1 every time the loop loops (every one second)
         if movement == True: #If movement is True, then insert date and time into the database.
             print("Insert SQL") #Placeholder for insert_sql command
