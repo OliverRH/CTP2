@@ -23,7 +23,7 @@ if ($total_number_of_rows > 0) {
     }
 
   } else {
-    echo "0 data found";
+    
   }
 
 
@@ -48,7 +48,7 @@ if ($total_number_of_rows2 > 0) {
 
 
   } else {
-    echo "0 data found";
+    
   }
   
 mysqli_close($conn)
