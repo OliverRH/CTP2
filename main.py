@@ -91,7 +91,7 @@ while True: #While loops runs forever
             turn_on_off(LED_zigbee_addr, False)
             room_to_color_LED(LED_zigbee_addr, 1)
             temp = 0 #Resest value is there is a movement
-        elif temp >= 30 and (1): #If there is no movement after 30 seconds and the person is at any other room that bedroom (1) or toilet (5) then insert Failure in database
+        elif temp >= 30 and (int(room) == 1): #If there is no movement after 30 seconds and the person is at any other room that bedroom (1) or toilet (5) then insert Failure in database
             room_to_color_LED(LED_zigbee_addr, 1)
             turn_on_off(LED_zigbee_addr, False)
             temp = 0 #Resest value is there is a movement
