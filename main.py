@@ -84,7 +84,7 @@ while True: #While loops runs forever
                 insert_timestamp_success_failures(room, "Success") 
             movement = False #Resets movement boolean to false after inserting SQL
             temp = 0 #Resest value is there is a movement
-        elif temp >= 30 and (1 < int(room) < 5): #If there is no movement after 30 seconds and the person is at any other room that bedroom (1) or toilet (5) then insert Failure in database
+        elif temp >= 30 and (0 < int(room) < 5): #If there is no movement after 30 seconds and the person is at any other room that bedroom (1) or toilet (5) then insert Failure in database
             print("Failure at: " + now.strftime("%Y-%m-%d %H:%M:%S") + " No movement for 30 seconds in room 2, 3 or 4. ")
             insert_timestamp_success_failures(room, "Failure") 
             turn_on_off(LED_zigbee_addr, False)
