@@ -11,9 +11,17 @@ if ($conn->query($delete_table_sql) ==  TRUE) {
   } else {
     echo "Error deleting data: " . $conn->error;
   }
-  
+
+$delete_table_sql2 = "TRUNCATE `db_table_success_failures`";
+
+if ($conn->query($delete_table_sql2) ==  TRUE) {
+    echo "Date deleted successfully";
+  } else {
+    echo "Error deleting data: " . $conn->error;
+  }
+
 mysqli_close($conn)
 
 ?>
 
-<meta http-equiv="refresh" content="1; url=userpage.php">
+<meta http-equiv="refresh" content="1; url=index.php">

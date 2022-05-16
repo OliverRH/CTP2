@@ -13,9 +13,11 @@ import sys
 import functions
 
 
-room = "1" #Defines room number 1 as default
+room = "0" #Defines room number 0 as default (LED: OFF)
 temp = 0 #Defines count value 
 state = "inactive"
+guide = False
+status = "1970-01-01 00:00:01"
 
 #Read from config_zigbee.ini file
 #----------------------------------------------------------------
@@ -60,7 +62,8 @@ def on_message(client, userdata, msg):
      
     print("Anyone there?: " + occupancy)       #Prints to terminal
     movement = str2bool(occupancy)             #The value from occupancy is a bool but in the format "string", this converts it to a boolean format
-    turn_on_off(LED_zigbee_addr, movement)     #Function that turns on and off the LED depending on the boolean value. True = on, false = off
+    if occupancy == True:
+        turn_on_off(LED_zigbee_addr, True)     #Function that turns on and off the LED depending on the boolean value. True = on, false = off
 #----------------------------------------------------------------
 
 #Main forever loop
@@ -78,21 +81,30 @@ while True: #While loops runs forever
         print("Room: " + room)
         temp += 1 #Count +1 every time the loop loops (every one second)
         if movement == True: #If movement is True, then insert date and time into the database.
+            if guide == False and room == "1":
+                status = now.strftime("%Y-%m-%d %H:%M:%S")
+                insert_timestamp(room, status, "Activated") #Function from setup_database.py. Inserts the date and time into the database
             print("Insert SQL") #Placeholder for insert_sql command
-            insert_timestamp(room) #Function from setup_database.py. Inserts the date and time into the database
+            guide = True
+            if guide == True:
+                insert_timestamp(room, now.strftime("%Y-%m-%d %H:%M:%S")) #Function from setup_database.py. Inserts the date and time into the database
             room_to_color_LED(LED_zigbee_addr, int(room)) #Changes the color of the LED to signal a specific room
             if room == "5": #If the person moved to room 5, then insert Success in database
-                insert_timestamp_success_failures(room, "Success") 
+                insert_timestamp_success_failures(status, room, "Success") 
             movement = False #Resets movement boolean to false after inserting SQL
             temp = 0 #Resest value is there is a movement
         elif temp >= 30 and (1 < int(room) < 5): #If there is no movement after 30 seconds and the person is at any other room that bedroom (1) or toilet (5) then insert Failure in database
             print("Failure at: " + now.strftime("%Y-%m-%d %H:%M:%S") + " No movement for 30 seconds in room 2, 3 or 4. ")
-            insert_timestamp_success_failures(room, "Failure") 
-            turn_on_off(LED_zigbee_addr, False)
-            room_to_color_LED(LED_zigbee_addr, 1)
+            insert_timestamp_success_failures(status, room, "Failure") 
+            room_to_color_LED(LED_zigbee_addr, 0)
             temp = 0 #Resest value is there is a movement
+            room = "0"
+            guide = False
+            insert_timestamp(room, now.strftime("%Y-%m-%d %H:%M:%S"), "Standby") #Function from setup_database.py. Inserts the date and time into the database
         elif temp >= 30 and (int(room) == 1): #If there is no movement after 30 seconds and the person is at any other room that bedroom (1) or toilet (5) then insert Failure in database
-            room_to_color_LED(LED_zigbee_addr, 1)
-            turn_on_off(LED_zigbee_addr, False)
+            room_to_color_LED(LED_zigbee_addr, 0)
             temp = 0 #Resest value is there is a movement
+            room = "0"
+            guide = False
+            insert_timestamp(room, now.strftime("%Y-%m-%d %H:%M:%S"), "Standby") #Function from setup_database.py. Inserts the date and time into the database
 #----------------------------------------------------------------

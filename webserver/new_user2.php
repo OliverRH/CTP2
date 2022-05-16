@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
 
     $sql = "INSERT INTO db_table_login (id, username, user_password, usertype) VALUES (NULL, '$username', '$password', '$usertype')";
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        echo "New account created successfully";
     } 
     else {
         echo "Error: " . $sql . "<br>" . $conn->error;

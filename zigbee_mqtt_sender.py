@@ -28,7 +28,9 @@ def turn_on_off(zigbbe_addr, bool_data):
     #client.publish("zigbee2mqtt/" + zigbbe_addr + "/set", json_str)
     
 def room_to_color_LED(zigbbe_addr, room):
-    if room == 1:
+    if room == 0:
+        payload = {"state":"OFF"}  #OFF
+    elif room == 1:
         payload = {"color":{"r":255,"g":0,"b":0}}  #red
     elif room == 2:
         payload = {"color":{"r":0,"g":255,"b":0}} #green

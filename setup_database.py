@@ -80,11 +80,11 @@ def insert_sql(ip_host, db_user, db_pass, db_name, table_name, table_columns_nam
     print(mycursor.rowcount, "record inserted.")
 
 
-def insert_timestamp(room_number):
-    now = datetime.now() # current date and time
-    date_time = now.strftime("%Y-%m-%d %H:%M:%S")  
+def insert_timestamp(room_number, date_time, status = "running"):
+    #now = datetime.now() # current date and time
+    #date_time = now.strftime("%Y-%m-%d %H:%M:%S")  
     
-    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + date_time + "'"
+    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + date_time + "'" + ", " + "'" + status + "'"
 
     config.read('config_db.ini')
     #print(config['mySQL_login']['db_user'])
@@ -100,11 +100,11 @@ def insert_timestamp(room_number):
 
     insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, column_names_room, column_values)
 
-def insert_timestamp_success_failures(room_number, success_failures):
+def insert_timestamp_success_failures(date_time_start, end_room, success_failures):
     now = datetime.now() # current date and time
-    date_time = now.strftime("%Y-%m-%d %H:%M:%S")  
+    date_time_end = now.strftime("%Y-%m-%d %H:%M:%S")  
     
-    column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + date_time + "'" + ", " + "'" + success_failures + "'"
+    column_values = "NULL, " + "'" + date_time_start + "'" + ", " + "'" + date_time_end + "'" + ", " + "'" + end_room + "'" + "," + "'" + success_failures + "'"
 
     config.read('config_db.ini')
     #print(config['mySQL_login']['db_user'])

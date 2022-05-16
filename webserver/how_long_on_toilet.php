@@ -37,7 +37,7 @@ mysqli_close($conn);
 
 */
 
-$total_sql_data = "SELECT A.id, A.Pi_room, A.Pi_time, TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) AS timedifference FROM db_table_room A INNER JOIN db_table_room B ON B.id = (A.id + 1) WHERE A.Pi_room = 4 or A.Pi_room = 5";
+$total_sql_data = "SELECT A.id, A.Pi_room, A.Pi_time, TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) AS timedifference FROM db_table_room A INNER JOIN db_table_room B ON B.id = (A.id + 1) WHERE A.Pi_room = 5";
 $total_result_data = mysqli_query($conn, $total_sql_data);
 $total_number_of_rows = mysqli_num_rows($total_result_data);
 
@@ -48,9 +48,8 @@ $data_points = array();
 if ($total_number_of_rows > 0) {
     // output data of each row
     while($row_data = mysqli_fetch_assoc($total_result_data)) {
-        if ($row_data["Pi_room"] == 5) {
-          echo "Start time: " . $row_data["Pi_time"] . "<br>" . "Time on the toilet: " . $row_data["timedifference"] . " seconds" . "<br><br>" ;
-        }
+        echo "Start time: " . $row_data["Pi_time"] . "<br>" . "Time on the toilet: " . $row_data["timedifference"] . " seconds" . "<br><br>" ;
+        
     }
 
 	//echo json_encode($data_points, JSON_NUMERIC_CHECK);

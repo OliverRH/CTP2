@@ -1,0 +1,135 @@
+SET @row_number = 0;
+
+SELECT A.id, A.Pi_room, A.Status, A.Pi_time, TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) AS timedifference FROM (SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') A INNER JOIN (SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') B ON B.num = (A.num + 9)
+
+
+
+SET @row_number = 0;
+
+SELECT A.id, A.Pi_room, A.Status, A.Pi_time, TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) AS timedifference 
+FROM 
+	(SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` 
+     FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') A 
+INNER JOIN 
+	(SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` 
+     FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') B 
+ON B.num = (A.num + 9)
+
+
+
+SET @row_number = 0;
+
+SELECT *, TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) AS timedifference 
+FROM 
+	(SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` 
+     FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') A 
+INNER JOIN 
+	(SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` 
+     FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') B 
+ON B.num = (A.num + (SELECT COUNT(`id`) FROM (SELECT `id`, `Pi_room`, `Pi_time`, `Status` 
+                                           FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') as count_table) + 1)
+
+
+
+
+#Total time from room 1 to 5 to 1
+SET @row_number = 0;
+
+SELECT A.id, A.Pi_room, A.Pi_time, A.Status, (TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) - 30) AS timedifference 
+FROM 
+	(SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` 
+     FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') A 
+INNER JOIN 
+	(SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` 
+     FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') B 
+ON B.num = (A.num + (SELECT COUNT(`id`) FROM (SELECT `id`, `Pi_room`, `Pi_time`, `Status` 
+                                           FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') as count_table) + 1)
+
+
+
+#Total time from room 1 to 5
+SET @row_number = 0;
+
+SELECT A.id, A.Pi_room, A.Pi_time, A.Status, (TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time))) AS timedifference 
+FROM 
+	(SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` 
+     FROM `db_table_room` WHERE `Status` = 'Activated' OR `Pi_room` = '5') A 
+INNER JOIN 
+	(SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` 
+     FROM `db_table_room` WHERE `Status` = 'Activated' OR `Pi_room` = '5') B 
+ON B.num = (A.num + (SELECT COUNT(`id`) FROM (SELECT `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Status` =
+                                              'Activated' OR `Pi_room` = '5') as count_table) + 1)
+
+
+
+
+SELECT `db_table_room`.* FROM `db_table_room` LEFT OUTER JOIN `db_table_success_failures` ON `db_table_room`.Pi_time = `db_table_success_failures`.Pi_time WHERE `db_table_success_failures`.`Status` = "Success"
+
+
+
+
+SET @row_number = 0;
+
+SELECT table1.* FROM (SELECT A.id, A.Pi_room, A.Pi_time, A.Status, (TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) - 30) AS timedifference 
+                      FROM (SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Status` = 'Activated' OR
+                            `Status` = 'Standby') A 
+                      INNER JOIN (SELECT (@row_number:=@row_number + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Status` = 'Activated'
+                                  OR `Status` = 'Standby') B 
+                      ON B.num = (A.num + (SELECT COUNT(`id`) FROM (SELECT `id`, `Pi_room`, `Pi_time`, `Status` FROM`db_table_room` WHERE `Status` = 'Activated' OR
+                                                                    `Status` = 'Standby') as count_table) + 1)) table1
+LEFT OUTER JOIN `db_table_success_failures` table2
+ON table1.Pi_time = table2.Pi_time
+WHERE table2.Status = "Success"
+
+
+
+
+
+
+
+SET @row_number1 = 0;
+SET @row_number2 = 0;
+SET @row_number3 = 0;
+SET @row_number4 = 0;
+SET @row_number5 = 0;
+SET @row_number6 = 0;
+SET @row_number7 = 0;
+SET @row_number8 = 0;
+
+SELECT * 
+FROM (SELECT(@row_number3:=@row_number3 + 1)AS num11, total_timedifference1 FROM (SELECT table1.* FROM (SELECT A.id, A.Pi_room,A.Pi_time, A.Status, (TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time))) AS total_timedifference1 FROM (SELECT (@row_number2:=@row_number2 + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Pi_room` = 5 OR `Pi_room` = 1) A INNER JOIN (SELECT (@row_number1:=@row_number1 + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Pi_room` = 5 OR `Pi_room` = 1) B ON B.num = (A.num + 1)) table1 LEFT OUTER JOIN `db_table_success_failures` table2 ON table1.Pi_time = table2.Pi_time_start WHERE table2.Status = "Success") AS temp WHERE `Status` = "running") table11
+
+LEFT OUTER JOIN 
+
+(SELECT (@row_number8:=@row_number8 + 1) AS num22, (timedifference1 - timedifference2) AS total_difference2 FROM (SELECT timedifference1, timedifference2 FROM (SELECT(@row_number7:=@row_number7 + 1) AS num1, table1.* FROM (SELECT A.id, A.Pi_room, A.Pi_time, A.Status, (TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) - 30) AS timedifference1 FROM (SELECT (@row_number6:=@row_number6 + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') A INNER JOIN (SELECT (@row_number5:=@row_number5 + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') B ON B.num = (A.num + 1)) table1 LEFT OUTER JOIN `db_table_success_failures` table2 ON table1.Pi_time = table2.Pi_time_start WHERE table2.Status = 'Success') table1 LEFT OUTER JOIN (SELECT (@row_number4:=@row_number4 + 1) AS num2, A.id, A.Pi_room, A.Pi_time, TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) AS timedifference2 FROM db_table_room A INNER JOIN db_table_room B ON B.id = (A.id + 1) WHERE A.Pi_room = 5) table2 ON table1.num1 = table2.num2) AS total) table22 
+ 
+ON table11.num11 = table22.num22
+
+
+
+
+
+
+
+
+
+SET @row_number1 = 0;
+SET @row_number2 = 0;
+SET @row_number3 = 0;
+SET @row_number4 = 0;
+SET @row_number5 = 0;
+SET @row_number6 = 0;
+SET @row_number7 = 0;
+SET @row_number8 = 0;
+
+SELECT (total_difference2 - total_difference1) AS total_difference_total FROM
+(SELECT *
+FROM (SELECT(@row_number3:=@row_number3 + 1)AS num11, total_difference1 FROM (SELECT table1.* FROM (SELECT A.id, A.Pi_room,A.Pi_time, A.Status, (TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time))) AS total_difference1 FROM (SELECT (@row_number2:=@row_number2 + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Pi_room` = 5 OR `Pi_room` = 1) A INNER JOIN (SELECT (@row_number1:=@row_number1 + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Pi_room` = 5 OR `Pi_room` = 1) B ON B.num = (A.num + 1)) table1 LEFT OUTER JOIN `db_table_success_failures` table2 ON table1.Pi_time = table2.Pi_time_start WHERE table2.Status = "Success") AS temp WHERE `Status` = "running") table11
+
+LEFT OUTER JOIN 
+
+(SELECT (@row_number8:=@row_number8 + 1) AS num22, (timedifference1 - timedifference2) AS total_difference2 FROM (SELECT timedifference1, timedifference2 FROM (SELECT(@row_number7:=@row_number7 + 1) AS num1, table1.* FROM (SELECT A.id, A.Pi_room, A.Pi_time, A.Status, (TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) - 30) AS timedifference1 FROM (SELECT (@row_number6:=@row_number6 + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') A INNER JOIN (SELECT (@row_number5:=@row_number5 + 1) AS num, `id`, `Pi_room`, `Pi_time`, `Status` FROM `db_table_room` WHERE `Status` = 'Activated' OR `Status` = 'Standby') B ON B.num = (A.num + 1)) table1 LEFT OUTER JOIN `db_table_success_failures` table2 ON table1.Pi_time = table2.Pi_time_start WHERE table2.Status = 'Success') table1 LEFT OUTER JOIN (SELECT (@row_number4:=@row_number4 + 1) AS num2, A.id, A.Pi_room, A.Pi_time, TIME_TO_SEC(TIMEDIFF(B.Pi_time, A.Pi_time)) AS timedifference2 FROM db_table_room A INNER JOIN db_table_room B ON B.id = (A.id + 1) WHERE A.Pi_room = 5) table2 ON table1.num1 = table2.num2) AS total) table22 
+ 
+ON table11.num11 = table22.num22) AS total_diff
+
+

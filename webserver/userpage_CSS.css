@@ -42,7 +42,16 @@ time, mark, audio, video {
   top: 100px;
   left: 15px;
   width: 200px;
-  height: 90%;
+  height: 40%;
+  overflow-y: scroll
+}
+
+#div_total_time_data {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  width: 200px;
+  height: 40%;
   overflow-y: scroll
 }
 
@@ -51,7 +60,16 @@ time, mark, audio, video {
   top: 100px;
   left: 230px;
   width: 250px;
-  height: 90%;
+  height: 40%;
+  overflow-y: scroll;
+}
+
+#div_live_timediff2 {
+  position: absolute;
+  top: 50%;
+  left: 230px;
+  width: 250px;
+  height: 40%;
   overflow-y: scroll;
 }
 
