@@ -69,7 +69,7 @@ def on_message(client, userdata, msg):
 #Main forever loop
 #----------------------------------------------------------------
 print("System is active!")
-turn_on_off(LED_zigbee_addr, False)
+#turn_on_off(LED_zigbee_addr, False)
 while True: #While loops runs forever
     now = datetime.now() #Current date and time
     if 0 <= now.hour < 9 or 9 <= now.hour <= 23: #The system must be active between 22:00 and 9:00. (From 0:00 to 8:59 and 22:00 to 23:59) The system must automatically turn on/off when necessary
