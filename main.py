@@ -60,10 +60,9 @@ def on_message(client, userdata, msg):
     else:                                      #The information about the room number is a the 7th place in the array.
         room = "1"                             #Therefore if there is no 7th place in the array, it defaults to 1.
      
-    turn_on_off(LED_zigbee_addr, True)
     print("Anyone there?: " + occupancy)       #Prints to terminal
     movement = str2bool(occupancy)             #The value from occupancy is a bool but in the format "string", this converts it to a boolean format
-    if occupancy == True:
+    if movement == True:
         turn_on_off(LED_zigbee_addr, True)     #Function that turns on and off the LED depending on the boolean value. True = on, false = off
 #----------------------------------------------------------------
 
