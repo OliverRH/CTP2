@@ -48,6 +48,7 @@ if ($total_number_of_rows2 > 0) {
 
 
   } else {
+    
   }
   
 mysqli_close($conn)
@@ -73,7 +74,7 @@ mysqli_close($conn)
 		backgroundColor: "#f4f4f4",
 		theme: "light2", // "light1", "light2", "dark1", "dark2"
 		title: {
-			text: "Number of toilet visits per day",
+			text: "Number of bathroom trips per day",
 			fontSize: 20,
 		},
 		axisY: {
@@ -145,9 +146,19 @@ mysqli_close($conn)
 		<div id="live_data"></div>
 	</div>
 
-	<div id="div_data" style="left: 230px;" ><p id="data_head">Time between rooms:</p></div>
+	<div id="div_data" style="top: 50%;" ><p id="data_head">Total time:</p></div>
+	<div style="margin-top: 50px;" id="div_total_time_data">
+		<div id="total_time_data"></div>
+	</div>
+
+	<div id="div_data" style="left: 230px;" ><p id="data_head">Time to the toilet:</p></div>
 	<div id="div_live_timediff">
-		<div id="live_timediff"></div>
+		<div id="activated_data"></div>
+	</div>
+
+	<div id="div_data" style="left: 230px; top: 50%;" ><p id="data_head">Time from the toilet:</p></div>
+	<div style="margin-top: 50px;" id="div_live_timediff2">
+		<div id="activated_data2"></div>
 	</div>
 	
 	<div id="div_data" style="left: 495px;" ><p id="data_head">Time on the toilet:</p></div>
@@ -165,8 +176,17 @@ mysqli_close($conn)
 		<a style="font-size: 16px;" href="logout.php" class="btn-group_button">Log ud!</a>
 		
 	</div>
-		
-	
+
+<?php
+    if(isset($_POST['submit'])){
+		$selected1 = $_POST['Zigbee_sub'];
+		$selected2 = $_POST['Zigbee_pub'];
+        echo 'You have chosen: ' . $selected1 . " --> " . $selected2;
+    };
+
+
+
+?>
 	
 </div>
 

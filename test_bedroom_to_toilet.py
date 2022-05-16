@@ -44,7 +44,7 @@ def bedroom_to_toilet_to_bedroom_success():
     publish(4)
     time.sleep(4)
     publish(5)
-    time.sleep(69)
+    time.sleep(11)
     publish(4)
     time.sleep(4)
     publish(3)
