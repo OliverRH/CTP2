@@ -106,7 +106,7 @@ mysqli_close($conn)
 		axisY: {
 			labelFontSize: 12,
 			titleFontSize: 20,
-			interval: 100,
+			interval: 60,
 			interlacedColor: "#EEEEEE",
       		tickLength: 1,
 		},

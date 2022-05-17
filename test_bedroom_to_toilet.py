@@ -18,7 +18,7 @@ def publish(room_number):
     payload = '{"battery":100,"illuminance":839,"illuminance_lux":839,"linkquality":141,"occupancy":true,"temperature":25,"voltage":3025,"room":' + str(room_number) + ',"blank": black}'
     
     client = mqtt.Client()
-    client.connect("192.168.87.146", Pi_ip_port) #192.168.241.40
+    client.connect("192.168.56.40", Pi_ip_port) #192.168.241.40
     client.publish("zigbee2mqtt/Sensor1234", payload) 
     client.disconnect()
 
