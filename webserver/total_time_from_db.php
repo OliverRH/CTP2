@@ -10,22 +10,16 @@ mysqli_query($conn, $set_row);
 $total_result_data = mysqli_query($conn, $total_sql_data);
 $total_number_of_rows = mysqli_num_rows($total_result_data);
 
-//echo $total_number_of_rows;
-
 if ($total_number_of_rows > 0) {
-    // output data of each row
     while($row_data = mysqli_fetch_assoc($total_result_data)) {
     if ($row_data["Status"] == "Activated") {
       echo "Lightguidens started at: " . $row_data["Pi_time"] . "<br>" .
       "Lasted: " . $row_data["timedifference"] . " seconds" .  "<br><br>";
+      }
     }
-    
-    }
-
-	//echo json_encode($data_points, JSON_NUMERIC_CHECK);
 
   } else {
-    echo "0 data found";
+    echo "";
   }
   
 mysqli_close($conn);

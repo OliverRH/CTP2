@@ -16,7 +16,7 @@ session_destroy();
   
 <body>
 
-<h2>Du er nu logget ud!</h2>
+<h2>yYou are now logged out!</h2>
 
 <meta http-equiv="refresh" content="1; url=index.php">
 
