@@ -56,8 +56,6 @@ def show_databases(ip_host, db_user, db_pass):
     print("\nCurrent databases: ")
     for database in databases:
         print(database)
-    #databases = [ i[0] for i in databases ]
-    #print(databases)
     mydb.close()
     
     
@@ -69,8 +67,7 @@ def create_table_in_database(ip_host, db_user, db_pass, db_name, new_table_name,
     print("Created table named: " + new_table_name)
     mydb.close()
         
-
-
+        
 def insert_sql(ip_host, db_user, db_pass, db_name, table_name, table_columns_names, table_columns_values):
     mydb = connect_to_db(ip_host, db_user, db_pass, db_name)
     sql = "INSERT INTO " + table_name + " (" + table_columns_names + ") VALUES " + "(" + table_columns_values + ")"
@@ -81,13 +78,10 @@ def insert_sql(ip_host, db_user, db_pass, db_name, table_name, table_columns_nam
 
 
 def insert_timestamp(room_number, date_time, status = "running"):
-    #now = datetime.now() # current date and time
-    #date_time = now.strftime("%Y-%m-%d %H:%M:%S")  
-    
+
     column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + date_time + "'" + ", " + "'" + status + "'"
 
     config.read('config_db.ini')
-    #print(config['mySQL_login']['db_user'])
 
     ip_host = config['mySQL_login']['ip_host']
     db_user = config['mySQL_login']['db_user']
@@ -101,13 +95,12 @@ def insert_timestamp(room_number, date_time, status = "running"):
     insert_sql(ip_host, db_user, db_pass, CTP2_db_name, CTP2_db_table_room, column_names_room, column_values)
 
 def insert_timestamp_success_failures(date_time_start, end_room, success_failures):
-    now = datetime.now() # current date and time
+    now = datetime.now()
     date_time_end = now.strftime("%Y-%m-%d %H:%M:%S")  
     
     column_values = "NULL, " + "'" + date_time_start + "'" + ", " + "'" + date_time_end + "'" + ", " + "'" + end_room + "'" + "," + "'" + success_failures + "'"
 
     config.read('config_db.ini')
-    #print(config['mySQL_login']['db_user'])
 
     ip_host = config['mySQL_login']['ip_host']
     db_user = config['mySQL_login']['db_user']
@@ -122,7 +115,7 @@ def insert_timestamp_success_failures(date_time_start, end_room, success_failure
 
 
 def insert_timer_db(room_number, room_timer):
-    time_diff = datetime.now() - room_timer # current date and time
+    time_diff = datetime.now() - room_timer 
     diff = time_diff.total_seconds()
     diff_split = str(diff).split('.')
     print(diff_split[0])
@@ -132,7 +125,6 @@ def insert_timer_db(room_number, room_timer):
     column_values = "NULL, " + "'" + room_number + "'" + ", " + "'" + diff_split[0] + "'"
 
     config.read('config_db.ini')
-    #print(config['mySQL_login']['db_user'])
 
     ip_host = config['mySQL_login']['ip_host']
     db_user = config['mySQL_login']['db_user']
