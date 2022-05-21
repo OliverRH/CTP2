@@ -1,23 +1,21 @@
-from ast import If
-from cProfile import run
-from pydoc import cli
-from traceback import print_tb
-from sql_connector import *
+#Imports
+#----------------------------------------------------------------
 from zigbee_mqtt_sender import *
 from datetime import datetime
 from setup_database import *
 import time
-import paho.mqtt.client as mqtt
 import configparser
-import sys
-import functions
+#----------------------------------------------------------------
 
 
+#Default values
+#----------------------------------------------------------------
 room = "0" #Defines room number 0 as default (LED: OFF)
 temp = 0 #Defines count value 
 state = "inactive" #Default value
 guide = False #Default value
 status = "1970-01-01 00:00:01" #Setting default timestamp
+#----------------------------------------------------------------
 
 #Read from config_zigbee.ini file
 #----------------------------------------------------------------
